@@ -1,0 +1,59 @@
+#home-header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+#p-home-header {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 35px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+    grid-auto-rows: 1.6em;
+    grid-gap: 10px;
+    margin-top: 3%;
+    text-align: center;
+}
+
+#containercontainer {
+    background-color: red;
+}
+
+.card-body {
+    min-height: 300px;
+    min-width: 300px;
+    margin-right: 5px;
+}
+
+.container-fluid {
+    background-color: #F7F7F7;
+    padding-top: 1%;
+    padding-bottom: 4%;
+    padding-right: 3%;
+    padding-left: 3%;
+    text-align: center;
+}
+
+#p-header {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 300%;
+    color: #FF0000;
+}
+
+.p-large {
+    font-size: 130%;
+}
+
+#blog {
+    color: #FF0000;
+    text-align: left;
+    font-size: 300%;
+}

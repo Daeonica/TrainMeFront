@@ -1,0 +1,105 @@
+<app-change-h1 [componentName]="nameOfComponent"></app-change-h1>
+
+<div class="container">
+  <div *ngIf='alert != ""' class="my-5 alert alert-{{alert}} alert-dismissible fade {{show}} " role="alert">
+    <div *ngFor="let message of messages">{{message}}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
+  </div>
+
+  <div>
+    <div *ngIf="loading" class="d-flex justify-content-center ">
+      <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+    </div>
+    <div *ngIf="!loading">
+
+      <div class="div-princ">
+        <div>
+          <div class="title-photo">
+            <div class="col-md-6">
+              <img src="http://localhost:8000/user/image/{{course.user.id}}" alt="Logo">
+            </div>
+            <h3 *ngIf="course != undefined">{{course.user.name}}</h3>
+          </div>
+          <h1 *ngIf="course != undefined">{{course.name}}</h1>
+        </div>
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <div class="col-6 my-3" style="width:50%">
+            <img src="http://localhost:8000/course/image/{{course.id}}" alt="Logo" style="width:60%">
+          </div>
+
+          <div *ngIf="purchased" class="col-6">
+            <button (click)="downloadFile()" class="btn btn-success">Download</button>
+          </div>
+
+          <div class="text-center" *ngIf="!purchased">
+            <!-- user mira si el usuario esta logged. Si lo esta no es null-->
+            <div *ngIf="loading == false">
+              <button *ngIf="!payment_loading && user == null" class="btn btn-outline-danger"
+                routerLink="/login">Buy!</button>
+              <button *ngIf="!payment_loading && user != null" class="btn btn-outline-danger"
+                (click)="buy()">Buy!</button>
+            </div>
+            <div *ngIf="payment_loading">
+              <mat-progress-spinner mode="indeterminate" color="primary" diameter="50"
+                strokeWidth="5"></mat-progress-spinner>
+            </div>
+          </div>
+        </div>
+        <video width="640" height="480" muted poster="../../../../../assets/video-online.jpg" autoplay loop controls>
+          <source [src]="'http://localhost:8000/course/video/'+course.id"  type="video/mp4">
+          Tu navegador no soporta la etiqueta de video HTML5.
+        </video>
+
+      </div>
+      <div class="description-body">
+        <h1>Description of the course:</h1>
+
+        <div class="">
+          <div class="" *ngIf="course != undefined">
+            {{course.description}}
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div>
+          <h1 class="text-center">Reviews</h1>
+        </div>
+        <div class="container overflow-auto"
+          style="max-width: 700px; border: 2px solid #eae2e2 !important;height: 300px; overflow-x: auto; overflow-y: auto;">
+          <div class="d-flex justify-content-between py-2 my-2" *ngFor="let review of reviews">
+            <div class="d-flex my-2">
+              <div class="fw-bold text-uppercase p-2">
+                {{review.user.name}}:
+              </div>
+              <div class="p-2">
+                {{review.comment}}
+              </div>
+              <div class="p-2">
+                {{review.review_date.date}}
+              </div>
+            </div>
+            <div class="" *ngIf="user != undefined">
+              <button class="btn btn-danger" *ngIf="review.user.id == user.id"
+                (click)="deleteReview(review.id)">eliminar</button>
+            </div>
+          </div>
+          <form [formGroup]="commentForm" *ngIf="purchased" class="sticky-bottom bg-white w-100">
+            <div class="d-flex p-2 border-top border-2" *ngIf="!sub_loading">
+              <input type="text" formControlName="comment" placeholder="Write a comment" class="w-100">
+              <button *ngIf="!review_loading" type="submit" class="btn btn-primary " ng-disabled='disabled'
+                (click)="createReview()">Enviar</button>
+
+              <div *ngIf="review_loading">
+                <mat-progress-spinner mode="indeterminate" color="primary" diameter="50"
+                  strokeWidth="5"></mat-progress-spinner>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

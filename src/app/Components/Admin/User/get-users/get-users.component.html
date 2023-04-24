@@ -1,0 +1,22 @@
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Description</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td><button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button></td>
+        <td>{{user.name}}</td>
+        <td>{{user.surname}}</td>
+        <td>{{user.description}}</td>
+        <td>{{user.role.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

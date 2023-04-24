@@ -1,0 +1,68 @@
+<div class="bg-body-tertiary pt-4">
+  <div class="text-center mb-5">
+    <h3>Crea tu perfil gratuito</h3>
+    <h1 >Register</h1>
+  </div>
+  <form [formGroup]="registerForm" class="container border bg-white w-50 shadow-sm p-3 mb-5 bg-body">
+    <div *ngIf='alert != ""' class="alert alert-{{alert}} alert-dismissible fade {{show}}" role="alert">
+      <div *ngFor="let message of messages">{{message}}</div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+        (click)="closeAlert()"></button>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="text" formControlName="name" class="form-control" aria-describedby="nameHelp"
+        style="height: fit-content !important;" id="nameInput" placeholder="Name">
+      <label for="nameInput">Name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="text" formControlName="surname" class="form-control" aria-describedby="surnameHelp"
+        style="height: fit-content !important;" id="surnameInput" placeholder="Surname">
+      <label for="surnameInput">Surname</label>
+    </div>
+
+    <div class="form-floating">
+      <input formControlName="email" class="form-control" style="height: fit-content !important;" id="floatingInput"
+        aria-describedby="emailHelp" placeholder="Email">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="mb-3">
+      <div class="text-danger"
+        *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('required')">
+        The email is required
+      </div>
+      <div class="text-danger" *ngIf="registerForm.get('email').touched && registerForm.get('email').hasError('email')">
+        Email format incorrect
+      </div>
+    </div>
+    <div class="form-floating">
+      <input type="password" formControlName="password" class="form-control" style="height: fit-content !important;"
+        id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="mb-3">
+      <div class="text-danger"
+        *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')">
+        Password not required
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" formControlName="confirmPassword" class="form-control"
+        style="height: fit-content !important;" id="floatingCofnirmPassword" placeholder="Confirm password">
+      <label for="floatingCofnirmPassword">Confirm password</label>
+    </div>
+
+    <div class="form-floating">
+      <select class="form-select" id="floatingSelect" formControlName="role" aria-label="Floating label select example">
+        <option value="" selected>Select and option</option>
+        <option *ngFor="let role of roles" value="{{role.id}}">{{ role.name }}</option>
+      </select>
+      <label for="floatingSelect">Select role</label>
+    </div>
+
+    <div class="form-group my-3 p-0">
+      <button type="submit" style="border-radius: 2px !important;"
+        class="btn btn-lg btn-danger form-control" (click)="onRegister()">Register</button>
+    </div>
+  </form>
+</div>

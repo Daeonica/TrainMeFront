@@ -1,0 +1,51 @@
+<nav class="bg-white-train-me">
+    <div class="max-w-screen-2xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+            <div><a href="/">
+                <img src="../../../../assets/img/logo.png" alt="" class="-mb-5 md:-ml-0 -ml-8" />
+            </a></div>
+
+            <div class="hidden xl:flex font-secondary gap-10 items-center text-[19px]">
+                <div>
+                    <form>
+                        <input type="email" [(ngModel)]="query" name="query" placeholder="Search course.."
+                            class="py-[3px] px-2 outline-none border rounded-l-[5px]">
+                        <button (click)="searchButton()" class="rounded-r-[35px] -m-2 py-1 px-2  text-white bg-[#FF0000]">
+                            Search course
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <a href="/courses/search" class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+                        Courses
+                    </a>
+                </div>
+                <div>
+                    <a href="/trainers" class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+                        Trainers
+                    </a>
+                </div>
+                <div>
+                    <a href="/categories" class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+                        Categories
+                    </a>
+                </div>
+                <div>
+                    <a href="/about" class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+                        About
+                    </a>
+                </div>
+                <div>
+                    <button class="py-[13px] px-[48px] bg-red-train-me text-white rounded-[35px]">Sign Up</button>
+                </div>
+                <div>
+                    <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[35px]">Sign
+                        In</button>
+                </div>
+            </div>
+            <div class="xl:hidden">
+                <img src="../../../../assets/img/menu-icon.png" alt="">
+            </div>
+        </div>
+    </div>
+</nav>

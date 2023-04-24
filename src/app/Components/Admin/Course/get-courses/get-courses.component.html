@@ -1,0 +1,26 @@
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Actions</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr *ngFor="let course of allCourses">
+            <td><button> <a href="/admin/course/update/{{course.id}}">Edit</a> </button></td>
+            <td>{{course.name}}</td>
+            <td>{{course.description}}</td>
+            <td>{{course.price}}</td>
+            <td>{{course.user.name}}</td>
+            <td>{{course.category.name}}</td>
+        </tr>
+      
+    </tbody>
+  </table>
+</div>

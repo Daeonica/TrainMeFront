@@ -1,0 +1,36 @@
+<form [formGroup]="updateForm" class="container border" style="width: 30%; margin-bottom: 50px; padding-top: 20px;">
+  <div  *ngIf = 'alert != ""' class="alert alert-{{alert}} alert-dismissible fade {{show}}" role="alert">
+    <div *ngFor="let message of messages">{{message}}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
+  </div>
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="nameHelp">
+  </div>
+  <div class="form-group">
+    <label for="surname">Apellido</label>
+    <input type="text" formControlName="surname" class="form-control" id="surname" aria-describedby="nameHelp">
+  </div>
+
+  <div class="form-group" *ngIf="user.role.key_value == 'admin'">
+    <label for="roles">Registrate como:</label>
+    <select name="" id="" formControlName="role">
+      <option value="">--Select a role--</option>
+        <option  *ngFor="let role of roles" value="{{role.id}}">{{ role.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+    <div class="text-danger" *ngIf="updateForm.get('email').touched && updateForm.get('email').hasError('required')">
+      El email es requerido
+    </div>
+    <div class="text-danger" *ngIf="updateForm.get('email').touched && updateForm.get('email').hasError('email')">
+      El formato del email es incorrecto
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-danger mt-4 mb-5" ng-disabled = 'disabled' (click)="onUpdate()">Actualizar</button>
+  <button type="submit" class="btn btn-danger mt-4 mb-5" ng-disabled = 'disabled' (click)="onDelete()">Eliminar</button>
+</form>

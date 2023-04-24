@@ -1,0 +1,45 @@
+<div class="text-center my-5 container w-50 ">
+  <h1 class="">Customer Support</h1>
+  <h3 class="mt-5">We will solve any doubt!</h3>
+</div>
+
+
+<form [formGroup]="contactForm" class="container w-50 p-3 mb-5">
+
+  <div class="form-floating ">
+    <input type="text" formControlName="name" class="form-control" id="name" name="name" placeholder="Ingresa tu nombre"
+      required minlength="3" maxlength="10">
+    <label for="name">Name</label>
+  </div>
+
+  <div class="text-danger" *ngIf="contactForm.get('name').touched && contactForm.get('name').hasError('required')">
+    The name is required
+  </div>
+
+  <div class="form-floating my-3">
+    <input type="email" formControlName="email" class="form-control" id="email"
+      placeholder="Ingresa tu correo electrónico" name="email" required
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+    <label for="email">Email</label>
+  </div>
+
+  <div class="text-danger" *ngIf="contactForm.get('email').touched && contactForm.get('email').hasError('required')">
+    The mail is required
+  </div>
+
+  <div class="text-danger" *ngIf="contactForm.get('email').touched && contactForm.get('email').hasError('email')">
+    The email format is not correct
+  </div>
+    
+  <div class="form-floating">
+    <textarea formControlName="message" class="form-control" id="message" name="message" maxlength="140" placeholder="escribe"
+      rows="3"></textarea>
+    <label for="message">Message</label>
+  </div>
+
+  <div class="text-danger" *ngIf="contactForm.get('message').touched && contactForm.get('message').hasError('required')">
+    The message is required
+  </div>
+  
+  <button type="submit" (click)="onSubmit" class="btn btn-danger mt-2">Send</button>
+</form>

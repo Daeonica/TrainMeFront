@@ -1,0 +1,67 @@
+<div>
+  <img src="http://127.0.0.1:8000/course/image/{{course.id}}" alt="">
+</div>
+<form [formGroup]="updateForm" class="container border" style="width: 30%; margin-bottom: 50px; padding-top: 20px;">
+  <div *ngIf='alert != ""' class="alert alert-{{alert}} alert-dismissible fade {{show}}" role="alert">
+    <div *ngFor="let message of messages">{{message}}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="nameHelp">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" formControlName="description" class="form-control" id="description" aria-describedby="nameHelp">
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number" formControlName="price" class="form-control" id="price" aria-describedby="nameHelp">
+  </div>
+
+  <div class="form-group">
+    <label for="user">Author</label>
+    <input type="text" readonly formControlName="user" class="form-control" id="user" aria-describedby="nameHelp">
+  </div>
+
+
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select name="" id="" formControlName="category">
+      <option *ngFor="let category of categories" value="{{category.id}}">{{ category.name }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <form action="">
+      <label for="">Upload course image</label>
+      <input type="file" (change)="catchImage($event)" multiple>
+      <button (click)="uploadImage()">Upload image</button>
+    </form>
+  </div>
+
+  <div class="form-group">
+    <form action="">
+      <label for="">Upload course file</label>
+      <input type="file" (change)="catchFile($event)" multiple>
+      <button (click)="uploadFile()">Upload file</button>
+    </form>
+  </div>
+
+  <div class="form-group">
+    <form action="">
+      <label for="">Upload course video</label>
+      <input type="file" (change)="catchVideo($event)" multiple>
+      <button (click)="uploadVideo()">Upload video</button>
+    </form>
+  </div>
+
+  <div class="form-group">
+    <form action="">
+      <button (click)="downloadFile()">Download</button>
+    </form>
+  </div>
+
+  <button type="submit" class="btn btn-danger mt-4 mb-5" ng-disabled='disabled' (click)="onUpdate()">Actualizar</button>
+  <button type="submit" class="btn btn-danger mt-4 mb-5" ng-disabled='disabled' (click)="onDelete()">Eliminar</button>
+</form>

@@ -1,0 +1,24 @@
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let course of allCourses">
+            <td><a href="course/{{course.course.id}}">{{course.course.name}}</a></td>
+            <td>{{course.course.description}}</td>
+            <td>{{course.course.price}}</td>
+            <td><a href="trainer/{{course.trainer.id}}">{{course.trainer.name + ' ' + course.trainer.surname}}</a></td>
+            <td>{{course.category.name}}</td>
+        </tr>
+
+    </tbody>
+  </table>
+</div>

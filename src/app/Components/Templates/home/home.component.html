@@ -1,0 +1,162 @@
+<header class="bg-black-train-me">
+    <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 text-white">
+            <h1 class="font-primary text-[50px] text-center">Search your training course</h1>
+        </div>
+        <div>
+            <div class="grid grid-cols-2 justify-items-center gap-3 md:flex md:gap-8 text-center md:justify-center font-secondary text-white">
+                
+                <a href="{{url+'category/'+category.id}}" *ngFor="let category of categories" class="no-underline">
+                    <div>
+                        <img src="{{category_url+category.id}}" alt="" class="w-36 h-32">
+                        <h4 class="mt-2 uppercase">{{category.name}}</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- PERSONAL TRAINER -->
+<section>
+    <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-[48px] text-center font-primary mb-10">Our trainers</h1>
+        <div class="grid grid-cols-2 justify-items-center md:flex gap-10 md:justify-center font-secondary">
+            <div *ngFor="let trainer of trainers" class="grid items-center gap-3">
+                <div>
+                    <img src="{{trainer_url+trainer.id}}" alt="" class="w-64 h-48">
+                </div>
+                <p class="text-[#730000] text-[12px]">Personal trainer</p>
+                <p>{{trainer.name+' '+trainer.surname}}</p>
+                <p class="text-[12px] max-w-[200px]">{{trainer.description}}</p>
+               <a href="/trainer/{{trainer.id}}" class="no-underline w-full">
+                <button class="w-full py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">More info</button>
+               </a>
+            </div>
+            <!-- <div class="grid items-center">
+                <div>
+                    <img src="img/IMAGE (4).png" alt="">
+                </div>
+                <p class="text-[#730000] text-[12px]">Personal trainer</p>
+                <p>Raúl De Vena</p>
+                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
+                <button class=" py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
+                    In</button>
+            </div>
+            <div class="grid items-center">
+
+                <div>
+                    <img src="img/IMAGE (5).png" alt="">
+                </div>
+                <p class="text-[#730000] text-[12px]">Personal trainer</p>
+                <p>Raúl De Vena</p>
+                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
+                <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
+                    In</button>
+            </div>
+            <div class="grid items-center">
+
+                <div>
+                    <img src="img/IMAGE (6).png" alt="">
+                </div>
+                <p class="text-[#730000] text-[12px]">Personal trainer</p>
+                <p>Raúl De Vena</p>
+                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
+                <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
+                    In</button>
+            </div>
+            <div class="grid items-center">
+
+                <div>
+                    <img src="img/IMAGE (7).png" alt="">
+                </div>
+                <p class="text-[#730000] text-[12px]">Personal trainer</p>
+                <p>Raúl De Vena</p>
+                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
+                <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
+                    In</button>
+            </div> -->
+        </div>
+    </div>
+</section>
+<!-- Promotional section -->
+<section class="bg-[#F7F7F7]">
+    <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div>
+            <h4 class="text-center font-primary text-[24px]">
+                TrainMe | Your new training platform
+            </h4><br>
+            <h1 class="font-primary text-[49px] text-center text-red-train-me leading-[65px]">
+                Search the most online complete training coursesin our platform
+            </h1><br>
+            <h4 class="text-center font-secondary leading-[26px]">
+                We present to you the ultimate training course search engine. Our platform offers specialized
+                personal trainers in various disciplines to help you train and master the art of your choice,
+                whether it's yoga, Pilates, boxing, cross-training, calisthenics, powerlifting, bodybuilding, and
+                more. All courses are available in English to ensure a seamless learning experience.
+                <br>
+
+            </h4>
+        </div>
+    </div>
+</section>
+<section class="bg-trainer bg-cover bg-center relative">
+    <div class="absolute inset-0 z-0"></div>
+    <div class="z-10 bg-black bg-opacity-30 w-full h-full absolute"></div>
+    <div class="max-w-screen-2xl mx-auto py-20 px-4 sm:px-6 lg:px-8 z-20 relative">
+        <div class="grid justify-items-center">
+            <div>
+                <h1 class="text-white text-center font-primary text-[64px]">
+                    Are you a trainer? Upload your courses here and attract new clients.
+                </h1>
+                <br>
+                <p class="text-white text-center font-secondary text-[20px]">
+                    Our platform offers a user-friendly
+                    interface, allowing you to showcase your expertise and connect with potential clients looking
+                    for personal
+                    training services. By joining our marketplace, you can grow your client base, expand your reach,
+                    and
+                    establish
+                    yourself as a leading fitness professional in Spain. Sign up now and start sharing your courses
+                    with fitness
+                    enthusiasts searching for the perfect training experience.
+                </p>
+            </div>
+            <br>
+            <br>
+            <div>
+                <button class="bg-red-train-me border-white rounded-[5px] py-3 px-12 border-[2px] text-white">
+                    Create trainer account
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-red-train-me">
+    <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div class="md:flex grid gap-5 justify-items-center md:justify-between md:items-center font-primary">
+            <div class="flex gap-2 items-center">
+                <div>
+                    <img src="../../../../assets/img/newsletter-logo.png" alt="">
+                </div>
+                <div class="hidden md:none">
+                    <img src="../../../../assets/img/stick.png" alt="">
+                </div>
+                <div class="text-[40px] text-white text-center">
+                    ¡Suscríbete al Newsletter!
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <input type="email" placeholder="Your email" class="py-3 px-4 rounded-l-[35px]">
+                <button class="rounded-r-[35px] -m-2 py-3 px-12  text-white bg-[#424147]">
+                    Suscribirme
+                </button>
+            </div>
+            <div class="block md:hidden">
+                <input type="email" placeholder="Your email" class=" py-2 px-1 rounded-l-[35px]">
+                <button class="rounded-r-[35px] px-1  py-2 -m-2 text-white bg-[#424147]">
+                    Suscribirme
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

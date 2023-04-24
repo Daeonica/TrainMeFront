@@ -1,0 +1,105 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<app-change-h1 [componentName]="nameOfComponent"></app-change-h1>
+
+<div id="home-header">
+</div>
+<div class="container-fluid">
+
+  <div class="row">
+    <aside class="col-md-3">
+      <div class="card">
+        <article class="filter-group">
+          <header class="card-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
+              <i class="icon-control fa fa-chevron-down"></i>
+              <h6 class="title">Category</h6>
+            </a>
+          </header>
+          <div class="filter-content collapse show" id="collapse_2">
+            <div class="card-body">
+              <div *ngFor="let category of categories">
+                <label class="custom-control custom-checkbox">
+                  <input type="checkbox" [(ngModel)]="category.selected" [value]="category.id"
+                    (ngModelChange)="updateCourseByCategory(category, $event)" class="custom-control-input">
+                  <div class="custom-control-label">{{category.name}}
+                    <b class="badge badge-pill badge-light float-right">----</b>
+                  </div>
+                </label>
+              </div>
+            </div> <!-- card-body.// -->
+
+          </div>
+        </article>
+
+        <!-- filter-group .// -->
+        <article class="filter-group">
+          <header class="card-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+              <i class="icon-control fa fa-chevron-down"></i>
+              <h6 class="title">Price range </h6>
+            </a>
+          </header>
+          <div class="filter-content collapse show" id="collapse_3">
+            <div class="card-body">
+              <input type="range" class="custom-range" min="0" max="100" [(ngModel)]="max_price"
+                (ngModelChange)="updatePrice('range',$event)">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Min</label>
+                  <input class="form-control" placeholder="€0" min="1" max="99" type="number" [(ngModel)]="min_price"
+                    (ngModelChange)="updatePrice('number',$event)">
+                </div>
+                <div class="form-group text-right col-md-6">
+                  <label>Max</label>
+                  <input class="form-control" placeholder="€1,0000" min="2" max="100" [(ngModel)]="max_price"
+                    (ngModelChange)="updatePrice('number',$event)" type="number">
+                </div>
+              </div> <!-- form-row.// -->
+            </div><!-- card-body.// -->
+          </div>
+        </article> <!-- filter-group .// -->
+      </div> <!-- card.// -->
+
+    </aside>
+    <main class="col-md-9">
+
+      <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+          <span class="mr-md-auto" *ngIf="coursesToShow != null">{{coursesToShow.length}} Items found </span>
+        </div>
+      </header>
+
+      <div class="row">
+        <div *ngIf="loading" class="d-flex justify-content-center ">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div class="col-md-4" *ngFor="let course of coursesToShow | paginate: config">
+          <figure class="card card-product-grid">
+            <div class="img-wrap">
+              <span class="badge badge-danger"> NEW </span>
+              <img src="http://127.0.0.1:8000/course/image/{{course.id}}" class="img-fluid">
+              <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+            </div> <!-- img-wrap.// -->
+            <figcaption class="info-wrap">
+              <div class="fix-height">
+                <a href="#" class="title">Name: {{course.name}}</a>
+                <div class="price-wrap mt-2">
+                  <p class="price">Price: {{course.price}}</p>
+                  <p>Description: {{course.description}}</p>
+                  <p>Category: {{course.category.name}}</p>
+                  <p>Author: {{course.user.name}}</p>
+                </div> <!-- price-wrap.// -->
+              </div>
+              <a routerLink="/course/{{course.id}}" class="btn btn-block btn-danger">View course </a>
+            </figcaption>
+          </figure>
+        </div> <!-- col.// -->
+
+      </div>
+      <pagination-controls (pageChange)="config.currentPage = $event"></pagination-controls>
+
+    </main>
+  </div>
+</div>

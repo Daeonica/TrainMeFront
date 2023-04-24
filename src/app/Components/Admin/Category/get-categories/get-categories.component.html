@@ -1,0 +1,19 @@
+<div>
+  <button><a routerLink="/admin/category/create">Add new</a></button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Actions</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td><button><a routerLink="/admin/category/update/{{category.id}}">Edit</a></button></td>
+        <td>{{category.name}}</td>
+        <td>{{category.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,19 @@
+<div>
+  <button><a routerLink="/admin/role/create">Add new</a></button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Actions</th>
+        <th scope="col">Key value</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles">
+        <td><button> <a href="/admin/role/update/{{role.id}}">Edit</a> </button></td>
+        <td>{{role.key_value}}</td>
+        <td>{{role.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
