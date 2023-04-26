@@ -60,11 +60,6 @@ export class CoursesSearchComponent {
   updateQuery(){
     if (this.search != null) {
 
-    }else{
-      let coursesByName = this.all_courses.filter((trainer: any) => trainer.name.toLowerCase().includes(this.search.toLowerCase()));
-      let coursesByNameAndPrice = coursesByName.filter((course: any) => course.price >= this.min_price  && course.price <= this.max_price);
-      let coursesByNameAndPriceAndCategory = 
-
     }
   }
 
