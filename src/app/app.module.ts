@@ -36,6 +36,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PurchasedCoursesComponent } from './Components/Templates/purchased-courses/purchased-courses/purchased-courses.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoriesSearchComponent } from './Components/Category/categories-search/categories-search.component';
+import { TrainersSearchComponent } from './Components/Trainer/trainers-search/trainers-search.component';
+import { CoursesSearchComponent } from './Components/Templates/courses-search/courses-search/courses-search.component';
 
 
 
@@ -46,11 +49,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'courses/search', component: SearchFilterComponent},
-  { path: 'courses/search/:query', component: SearchFilterComponent},
+  { path: 'courses/search', component: CoursesSearchComponent},
+  { path: 'global/search/:query', component: SearchFilterComponent},
   { path: 'course/:id', component: CourseComponent},
   { path: 'course/trainer/create', component: CreateCourseComponent},
   { path: 'course/update/:id', component: EditDeleteCourseComponent},
+  { path: 'trainers/search', component: TrainersSearchComponent},
+  { path: 'categories/search', component: CategoriesSearchComponent},
   { path: 'user/courses', component:  UserCoursesComponent},
   { path: 'customer/purchased-courses/:id', component:  PurchasedCoursesComponent},
   { path: 'admin/user', component: GetUsersComponent, canActivate: [AdministratorGuard]},
@@ -95,6 +100,9 @@ const routes: Routes = [
     UserCoursesComponent,
     CourseComponent,
     PurchasedCoursesComponent,
+    CategoriesSearchComponent,
+    TrainersSearchComponent,
+    CoursesSearchComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],
@@ -105,7 +113,7 @@ const routes: Routes = [
     NgxPaginationModule,
     ReactiveFormsModule,
     [BrowserModule, HttpClientModule]
-  
+
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

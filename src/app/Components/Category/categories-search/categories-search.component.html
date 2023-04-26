@@ -1,0 +1,47 @@
+<header class="bg-black-train-me">
+  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <div class="mb-5">
+      <h1 class="font-primary text-[50px] text-center text-white">Search our categories</h1>
+    </div>
+    <div class="flex justify-center">
+      <form class="w-full text-center">
+        <input type="text" [(ngModel)]="search" name="search" (ngModelChange)="query()" placeholder="Search category.."
+          class="py-[10px] w-2/4 px-2 outline-none border rounded-[5px]">
+
+      </form>
+
+    </div>
+  </div>
+</header>
+<section class="">
+  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <div
+      class="grid py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96">
+      <div *ngFor="let category of categoriesToShow"
+        class="font-secondary bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-center mb-4">
+          <img class="rounded-t-lg" src="{{url}}category/image/{{category.id}}" alt="product image" />
+        </div>
+        <div class="px-5 pb-5 grid gap-10">
+          <div>
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{category.name}}</h5>
+            <h6 class="font-light text-gray-700">3 courses</h6>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <!--For trainers show count of courses-->
+            <a href="cateogry/profile/{{category.id}}"
+              class="text-white bg-[#FF0000] focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">More
+              info</a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="categoriesToShow.length == 0" class="md:col-span-2">
+        <h1 class="font-bold text-center uppercase text-xl text-gray-600">Category not found</h1>
+      </div>
+      <div *ngIf="loading" class="block">
+        <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+      </div>
+    </div>
+  </div>
+</section>

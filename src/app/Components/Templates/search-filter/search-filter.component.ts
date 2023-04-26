@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/Services/category/category.service';
 import { CourseService } from 'src/app/Services/course/course.service';
 import { CryptoJsService } from 'src/app/Services/crypto-js/crypto-js.service';
 import { PaginationInstance } from 'ngx-pagination';
+import { url } from 'src/app/Services/proxy';
 
 @Component({
   selector: 'app-search-filter',
@@ -25,6 +26,7 @@ export class SearchFilterComponent {
   min_price: any;
   selectedCategories: any;
   loading: boolean = true;
+  url: any;
 
 
   @Input() coursesToShow!: any;
@@ -34,6 +36,7 @@ export class SearchFilterComponent {
     this.cookie = this.cookieService.get("user");
     this.min_price = 1;
     this.max_price = 100;
+    this.url = url;
     this.selectedCategories = [];
     this.getCategory();
 
