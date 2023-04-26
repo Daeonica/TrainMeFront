@@ -1,0 +1,11 @@
+<div
+  class="modal-overlay"
+  (click)="onClose()"
+  [@fadeInOut]
+  (@fadeInOut.done)="onAnimationDone($event)"
+>
+  <div class="modal-container" (click)="$event.stopPropagation()" [@fadeInOut]>
+    <ng-content></ng-content>
+    <button (click)="onClose()">Cerrar</button>
+  </div>
+</div>

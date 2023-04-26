@@ -5,10 +5,39 @@
     </div>
     <div class="flex justify-center">
       <form class="w-full text-center">
-        <input type="text" [(ngModel)]="search" name="search" (ngModelChange)="query()" placeholder="Search course.."
+        <input type="text" [(ngModel)]="search" name="search" (ngModelChange)="updateQuery()" placeholder="Search course.."
           class="py-[10px] w-2/4 px-2 outline-none border rounded-[5px]">
-          <button class="text-white">Modal</button>
+
       </form>
+      <button (click)="openModal()" class="text-white">Abrir modal</button>
+      <app-modal *ngIf="isModalOpen" (close)="closeModal()">
+        <div class="card">
+          <div class="">
+            <div>
+              <h1>Cateogries</h1>
+              <div *ngFor="let category of categories">
+                <label class="flex gap-2 items-center">
+                  <input type="checkbox" [(ngModel)]="category.selected"
+                    (ngModelChange)="updateCourseByCategory(category, $event)" name="category-checkbox" [value]="category.id">
+                  <div class="">{{category.name}}</div>
+                </label>
+              </div>
+            </div>
+            <div class="grid justify-content-center">
+              <h1 class="text-center">Price</h1>
+              <div class="w-full">
+                <input class="w-full" type="range" min="0" max="100" [(ngModel)]="max_price" (ngModelChange)="updateQuery()" name="price_range" id="">
+              </div>
+              <div class="flex gap-1">
+                <input type="number" class="border outline-none" placeholder="Min" (ngModelChange)="updateQuery()" name="min" [(ngModel)]="min_price" id="">
+                <input type="number" class="border outline-none" placeholder="Max" (ngModelChange)="updateQuery()" name="max" [(ngModel)]="max_price" id="">
+              </div>
+            </div>
+            <div></div>
+          </div>
+        </div>
+      </app-modal>
+
     </div>
   </div>
 </header>

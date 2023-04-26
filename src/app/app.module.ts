@@ -39,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesSearchComponent } from './Components/Category/categories-search/categories-search.component';
 import { TrainersSearchComponent } from './Components/Trainer/trainers-search/trainers-search.component';
 import { CoursesSearchComponent } from './Components/Templates/courses-search/courses-search/courses-search.component';
+import { ModalComponent } from './Partials/Modal/modal/modal.component';
 
 
 
@@ -103,6 +104,7 @@ const routes: Routes = [
     CategoriesSearchComponent,
     TrainersSearchComponent,
     CoursesSearchComponent,
+    ModalComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],
@@ -112,6 +114,7 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     [BrowserModule, HttpClientModule]
 
   ],
