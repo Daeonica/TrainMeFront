@@ -38,7 +38,6 @@ import { PurchasedCoursesComponent } from './Components/Templates/purchased-cour
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesSearchComponent } from './Components/Category/categories-search/categories-search.component';
 import { TrainersSearchComponent } from './Components/Trainer/trainers-search/trainers-search.component';
-import { CoursesSearchComponent } from './Components/Templates/courses-search/courses-search/courses-search.component';
 import { ModalComponent } from './Partials/Modal/modal/modal.component';
 import { TrainerProfileComponent } from './Components/Templates/TrainerProfile/trainer-profile/trainer-profile.component';
 
@@ -51,8 +50,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'courses/search', component: CoursesSearchComponent},
-  { path: 'global/search/:query', component: SearchFilterComponent},
+  { path: 'courses/search', component: SearchFilterComponent},
+  { path: 'courses/search/:query', component: SearchFilterComponent},
   { path: 'course/:id', component: CourseComponent},
   { path: 'course/trainer/create', component: CreateCourseComponent},
   { path: 'course/update/:id', component: EditDeleteCourseComponent},
@@ -105,7 +104,6 @@ const routes: Routes = [
     PurchasedCoursesComponent,
     CategoriesSearchComponent,
     TrainersSearchComponent,
-    CoursesSearchComponent,
     ModalComponent,
     TrainerProfileComponent,
   ],

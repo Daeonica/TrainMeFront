@@ -31,7 +31,7 @@ export class HeaderComponent {
 
   searchButton() {
     console.log(this.query)
-    this.route.navigateByUrl("/global/search/" + this.query).then(() => {
+    this.route.navigateByUrl("/courses/search/" + this.query).then(() => {
 
       window.location.reload();
     });
