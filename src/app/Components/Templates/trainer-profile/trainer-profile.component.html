@@ -1,0 +1,108 @@
+<section class="mb-5" *ngIf="trainer != null">
+  <div class="px-4 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
+
+    <section class="">
+      <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
+        <div class="grid grid-cols-2 gap-2 px-5 py-8 border border-gray-300 md:grid-cols-5">
+          <div class="">
+            <img class="mr-4 h-165 w-165" src="{{url}}user/image/{{trainer.id}}" alt="Foto de perfil">
+          </div>
+
+          <div class="">
+            <div class="grid items-center h-full grid-rows-2">
+              <div class="p-2">
+                <h2 class="text-[21px]">{{trainer.name}} {{trainer.surname}}</h2>
+                <p class="text-[20px]">{{trainer.email}}</p>
+              </div>
+              <div class="p-2">
+                <a routerLink="/contact">
+                  <button
+                    class="px-4 py-2 mt-2 text-white bg-red-train-me hover:bg-red-700 rounded text-[20px]">Contactar</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="">
+      <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
+        <div class="px-8 py-8 border-gray-300 rounded-[5px] border">
+          <h3 class="text-xl">Sobre mí</h3>
+          <p class="">
+            {{trainer.description}}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6 ">
+        <div class="py-8 px-5 border border-gray-300 rounded-[5px]">
+          <h3 class="text-[21px] border-b">Cursos</h3>
+          <div class="pt-4 font-bold overflow-auto max-h-44" *ngIf="courses != null">
+
+            <div class="justify-between items-center px-8 py-8 mb-5 md:flex bg-gray-50" *ngFor="let course of courses">
+              <div class="flex gap-2 items-center justfy-center">
+                <img class="w-32 h-32" src="{{url}}course/image/{{course.id}}" alt="">
+                <div class="grid grid-rows-2 gap-5">
+                  <div>
+                    <p class="uppercase">{{course.name}}</p>
+                    <p class="font-medium text-md">{{course.description}}</p>
+                  </div>
+                  <div>
+                    <p class="font-light tex-sm">{{course.category.name}}</p>
+                    <p class="text-[#FF0000] font-bold">{{course.price}}€</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <a href="/course/{{course.id}}">
+                  <button
+                    class="px-4 py-2 mt-2 text-white bg-red-train-me hover:bg-red-700 rounded text-[20px]">View</button>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="">
+      <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
+        <div class="px-8 py-8 border border-gray-300 rounded-[5px]">
+          <h3 class="text-[21px] ">Comunicate con {{trainer.name}}</h3>
+
+          <form id="contact">
+            <div class="grid md:grid-cols-6 gap-3">
+              <div class="col-span-6 border py-2 px-3">
+                <label for="label">Title</label>
+                <input type="text" id="title" class="outline-none  font-light w-full" >
+              </div>
+              <div class="col-span-3 border py-2 px-3">
+                <label for="label">Full name</label>
+                <input type="text" id="title" class="outline-none  font-light w-full" >
+              </div>
+              <div class="col-span-3 border py-2 px-3">
+                <label for="label">Email</label>
+                <input type="email" id="title" class="outline-none  font-light w-full" >
+              </div>
+              <div class="col-span-6 border py-2 px-3">
+                <label for="label">Message</label>
+                <textarea id="title" class="outline-none  font-light w-full" ></textarea>
+              </div>
+              <div class="col-span-2 md:col-start-6 text-right py-2 px-3">
+                <button
+                class="px-4 py-2 text-white bg-red-train-me hover:bg-red-700 rounded text-[20px]">Contact Me!</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

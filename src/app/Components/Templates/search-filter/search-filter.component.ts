@@ -20,7 +20,8 @@ export class SearchFilterComponent {
   alert = '';
   messages = [];
   show = '';
-  categories: any;
+  @Input() categories: any;
+  @Output() categoriesChange: any;
   courses: any;
   max_price: any;
   min_price: any;
@@ -130,7 +131,8 @@ export class SearchFilterComponent {
       for (let i = 0; i < response.length; i++) {
         response[i].selected = true;
       }
-      this.categories = response;
+      this.categoriesChange.emit(response)
+      console.log(this.categories);
     })
   }
 

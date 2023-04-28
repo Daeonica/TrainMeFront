@@ -39,9 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesSearchComponent } from './Components/Category/categories-search/categories-search.component';
 import { TrainersSearchComponent } from './Components/Trainer/trainers-search/trainers-search.component';
 import { ModalComponent } from './Partials/Modal/modal/modal.component';
-import { TrainerProfileComponent } from './Components/Templates/TrainerProfile/trainer-profile/trainer-profile.component';
-
-
+import { TrainerProfileComponent } from './Components/Templates/trainer-profile/trainer-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
