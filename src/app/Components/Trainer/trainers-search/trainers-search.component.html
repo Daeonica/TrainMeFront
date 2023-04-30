@@ -12,7 +12,7 @@
   </div>
 </header>
 <section class="">
-  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8" *ngIf="!loading">
     <div
       class="grid py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center gap-3 overflow-auto max-h-96">
       <div *ngFor="let trainer of trainersToShow"
@@ -43,5 +43,8 @@
         <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
       </div>
     </div>
+  </div>
+  <div class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96" *ngIf="loading">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>
 </section>

@@ -52,6 +52,10 @@ export class CourseService {
     return this.http.post(url+'course/upload/document/'+id, formData)
   }
 
+  coursesByCategory(id: any): Observable<any>{
+    return this.http.get(url+'course/category/'+id)
+  }
+
   uploadImage(file: any, id: any): Observable<any>{
     const formData = new FormData();
     formData.append('file', file, file.name);
@@ -86,5 +90,13 @@ export class CourseService {
   getPurchasedCourses(user_id: any): Observable<any>{
     let header = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     return this.http.get(url+'purchased-courses/'+user_id, { headers: header })
+  }
+
+  categoryCoursesCount(id: any): Observable<any>{
+    return this.http.get(url+'count/category-courses/'+id)
+  }
+
+  trainerCoursesCount(id: any): Observable<any>{
+    return this.http.get(url+'count/category-courses/'+id)
   }
 }

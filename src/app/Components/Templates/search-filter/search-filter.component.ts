@@ -13,13 +13,6 @@ import { url } from 'src/app/Services/proxy';
   styleUrls: ['./search-filter.component.css']
 })
 export class SearchFilterComponent {
-  nameOfComponent = 'Search Filter';
-  cookie: any;
-  registerError = false;
-  openWindow = false;
-  alert = '';
-  messages = [];
-  show = '';
   @Input() categories: any;
   @Output() categoriesChange: any;
   courses: any;
@@ -34,12 +27,10 @@ export class SearchFilterComponent {
   @Output() updateArrayCourseToShow = new EventEmitter<any>();
 
   constructor(private categoryService: CategoryService, private router: Router, private courseService: CourseService, private route: ActivatedRoute, private cookieService: CookieService, private CryptJsService: CryptoJsService) {
-    this.cookie = this.cookieService.get("user");
     this.min_price = 1;
     this.max_price = 100;
     this.url = url;
     this.selectedCategories = [];
-    this.getCategory();
 
   }
 
@@ -110,6 +101,7 @@ export class SearchFilterComponent {
   };
 
   ngOnInit() {
+    this.getCategory();
     if(this.route.snapshot.paramMap.get('query') != null){
       this.courseService.getCoursesByQuery(this.route.snapshot.paramMap.get('query')).subscribe(response => {
         this.coursesToShow = response;
@@ -131,8 +123,7 @@ export class SearchFilterComponent {
       for (let i = 0; i < response.length; i++) {
         response[i].selected = true;
       }
-      this.categoriesChange.emit(response)
-      console.log(this.categories);
+      this.categories = response;
     })
   }
 

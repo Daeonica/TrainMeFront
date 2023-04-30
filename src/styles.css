@@ -24,3 +24,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 4px;
   max-width: 80%;
 }
+
+/* Estilos para la barra de desplazamiento general */
+::-webkit-scrollbar {
+  width: 5px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo para el fondo o riel de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Color de fondo del riel */
+  border-radius: 10px; /* Bordes redondeados del riel */
+}
+
+/* Estilo para la barra de desplazamiento en sí (el pulgar) */
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color de la barra de desplazamiento */
+  border-radius: 10px; /* Bordes redondeados de la barra */
+}
+
+/* Estilo para la barra de desplazamiento al pasar el cursor sobre ella (hover) */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color de la barra al hacer hover */
+}

@@ -16,6 +16,8 @@ export class TrainerProfileComponent {
   @Input() courses: any;
   @Output() coursesChange = new EventEmitter<any>();
 
+  loading = true;
+
   id: any;
   url = url;
 
@@ -43,6 +45,7 @@ export class TrainerProfileComponent {
     this.courseService.trainerCourses(this.id).subscribe((res: any) => {
       this.courses = res;
       this.coursesChange.emit(res)
+      this.loading = false;
       console.log(res)
     }
     )
