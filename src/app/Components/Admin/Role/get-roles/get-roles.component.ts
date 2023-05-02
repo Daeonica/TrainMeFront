@@ -10,6 +10,7 @@ import { RoleService } from 'src/app/Services/role/role.service';
 })
 export class GetRolesComponent {
   roles: any;
+  loading:boolean = true;
   constructor(private cryptoJsService: CryptoJsService, private roleService: RoleService) {
 
   }
@@ -18,9 +19,10 @@ export class GetRolesComponent {
     this.roleService.roles().subscribe(response => {
       console.log(response);
       this.roles = response;
+      this.loading = false;
     },
       error => {
-
+      this.loading = false;
       });
   }
 }

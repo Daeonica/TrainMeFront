@@ -1,19 +1,48 @@
-<div>
-  <button><a routerLink="/admin/category/create">Add new</a></button>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Actions</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let category of categories">
-        <td><button><a routerLink="/admin/category/update/{{category.id}}">Edit</a></button></td>
-        <td>{{category.name}}</td>
-        <td>{{category.description}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<section class="bg-gray-100">
+  <div class="px-4 py-10 mx-auto max-w-screen-2xl sm:px-6 lg:px-8 font-secondary" *ngIf="!loading">
+    <button><a routerLink="/admin/category/create">Add new</a></button>
+    <div class="container mx-auto">
+      <h1 class="mb-4 text-2xl font-bold">Lista de categorias</h1>
+      <table class="w-full overflow-hidden rounded-lg table-auto">
+        <thead class="text-white bg-red-600">
+          <tr>
+            <th class="px-4 py-2">Id</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Description</th>
+            <th class="px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="text-center hover:bg-gray-300" *ngFor="let category of categories">
+            <td>{{category.id}}</td>
+            <td>{{category.name}}</td>
+            <td>{{category.description}}</td>
+
+            <td class="px-4 py-2 ">
+              <div class="flex justify-center space-x-2">
+                <button class="px-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                  routerLink="/admin/category/view/{{category.id}}">
+                  Ver
+                </button>
+                <button class="px-2 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-700"
+                  routerLink="/admin/category/update/{{category.id}}">
+                  Editar
+                </button>
+                <button class="px-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                  routerLink="/admin/category/delete/{{category.id}}">
+                  Borrar
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div
+    class="flex justify-center gap-10 px-2 py-3 overflow-auto rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center max-h-96"
+    *ngIf="loading">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+  </div>
+</section>
