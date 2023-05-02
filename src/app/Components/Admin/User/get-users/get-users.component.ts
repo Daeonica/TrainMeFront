@@ -9,6 +9,7 @@ import { UserService } from 'src/app/Services/user/user.service';
 })
 export class GetUsersComponent {
   users: any;
+  loading: boolean = true;
   constructor(private userService: UserService, private cryptoJsService: CryptoJsService) {
 
   }
@@ -16,9 +17,11 @@ export class GetUsersComponent {
   ngOnInit() {
     this.userService.allUsers().subscribe(response => {
       this.users = response;
+      this.loading = false;
     },
       error => {
         console.log(error);
+        this.loading = false;
       });
   }
 }

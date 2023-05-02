@@ -11,20 +11,19 @@ export class GetCoursesComponent {
   allCourses: any;
   cookie: any;
   user:any;
+  loading: boolean = true;
 
   constructor(private cryptoJsService: CryptoJsService, private courseService: CourseService,  private cookieService: CookieService) {
-    // this.cookie = this.cookieService.get("user");
   }
 
   ngOnInit() {
-    // this.user = this.cryptoJsService.decrypt(this.cookie);
-
     this.courseService.courses().subscribe(response => {
         console.log(response);
         this.allCourses = response;
+        this.loading = false;
       },
         error => {
-
+          this.loading = false;
         });
 
 

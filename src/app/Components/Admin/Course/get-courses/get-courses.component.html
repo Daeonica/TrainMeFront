@@ -1,5 +1,5 @@
 <section class="bg-gray-100">
-  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 font-secondary">
+  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 font-secondary" *ngIf="!loading">
     <table class="w-full overflow-hidden rounded-lg table-auto">
       <thead class="text-white bg-red-600">
         <tr>
@@ -12,14 +12,14 @@
         </tr>
       </thead>
       <tbody class="">
-        <tr class="hover:bg-gray-300" *ngFor="let course of allCourses">
+        <tr class="hover:bg-gray-300 text-center" *ngFor="let course of allCourses">
           <td class="px-4 bg-white py-2">{{course.id}}</td>
           <td class="px-4 bg-white py-2">{{course.name}}</td>
           <td class="px-4 bg-white py-2">{{course.price}}</td>
           <td class="px-4 bg-white py-2">{{course.user.name}}</td>
           <td class="px-4 bg-white py-2">{{course.category.name}}</td>
           <td class="px-4 bg-white py-2">
-            <div class="flex gap-2">
+            <div class="flex gap-2 justify-center">
               <button> <a href="/admin/course/update/{{course.id}}">Edit</a> </button>
               <button> <a href="/admin/course/update/{{course.id}}">Edit</a> </button>
               <button> <a href="/admin/course/update/{{course.id}}">Edit</a> </button>
@@ -28,5 +28,10 @@
       </tbody>
     </table>
 
+  </div>
+  <div
+    class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96"
+    *ngIf="loading">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>
 </section>

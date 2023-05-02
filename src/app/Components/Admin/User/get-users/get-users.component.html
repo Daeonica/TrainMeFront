@@ -1,5 +1,5 @@
 <section class="bg-gray-100">
-  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 font-secondary">
+  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 font-secondary" *ngIf="!loading">
     <table class="w-full overflow-hidden rounded-lg table-auto">
       <thead class="text-white bg-red-600">
         <tr>
@@ -27,6 +27,8 @@
         </tr>
       </tbody>
     </table>
-
+  </div>
+  <div class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96" *ngIf="loading">
+    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>
 </section>
