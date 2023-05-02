@@ -38,7 +38,6 @@ import { PurchasedCoursesComponent } from './Components/Templates/purchased-cour
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CategoriesSearchComponent } from './Components/Category/categories-search/categories-search.component';
 import { TrainersSearchComponent } from './Components/Trainer/trainers-search/trainers-search.component';
-import { ModalComponent } from './Partials/Modal/modal/modal.component';
 import { TrainerProfileComponent } from './Components/Templates/trainer-profile/trainer-profile.component';
 import { CategoryProfileComponent } from './Components/Templates/category-profile/category-profile/category-profile.component';
 
@@ -60,9 +59,9 @@ const routes: Routes = [
   { path: 'categories/search', component: CategoriesSearchComponent},
   { path: 'user/courses', component:  UserCoursesComponent},
   { path: 'customer/purchased-courses/:id', component:  PurchasedCoursesComponent},
-  { path: 'admin/user', component: GetUsersComponent, canActivate: [AdministratorGuard]},
+  { path: 'admin/user', component: GetUsersComponent},
   { path: 'admin/category', component: GetCategoriesComponent, canActivate: [AdministratorGuard]},
-  { path: 'admin/course', component: GetCoursesComponent, canActivate: [AdministratorGuard]},
+  { path: 'admin/course', component: GetCoursesComponent},
   { path: 'admin/role', component: GetRolesComponent, canActivate: [AdministratorGuard]},
   { path: 'admin/user/create', component: GetRolesComponent, canActivate: [AdministratorGuard]},
   { path: 'admin/course/create', component: GetRolesComponent, canActivate: [AdministratorGuard]},
@@ -104,7 +103,6 @@ const routes: Routes = [
     PurchasedCoursesComponent,
     CategoriesSearchComponent,
     TrainersSearchComponent,
-    ModalComponent,
     TrainerProfileComponent,
     CategoryProfileComponent,
   ],
