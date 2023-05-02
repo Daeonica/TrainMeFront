@@ -1,22 +1,32 @@
-<div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Email</th>
-        <th scope="col">Description</th>
-        <th scope="col">Role</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td><button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button></td>
-        <td>{{user.name}}</td>
-        <td>{{user.surname}}</td>
-        <td>{{user.description}}</td>
-        <td>{{user.role.name}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<section class="bg-gray-100">
+  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 font-secondary">
+    <table class="w-full overflow-hidden rounded-lg table-auto">
+      <thead class="text-white bg-red-600">
+        <tr>
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">Surname</th>
+          <th class="px-4 py-2">Email</th>
+          <th class="px-4 py-2">Role</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        <tr class="hover:bg-gray-300" *ngFor="let user of users">
+          <td class="px-4 bg-white py-2">{{user.id}}</td>
+          <td class="px-4 bg-white py-2">{{user.name}}</td>
+          <td class="px-4 bg-white py-2">{{user.surname}}</td>
+          <td class="px-4 bg-white py-2">{{user.email}}</td>
+          <td class="px-4 bg-white py-2">{{user.role.name}}</td>
+          <td class="px-4 bg-white py-2">
+            <div class="flex gap-2">
+              <button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button>
+              <button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button>
+              <button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button>
+            </div>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>
