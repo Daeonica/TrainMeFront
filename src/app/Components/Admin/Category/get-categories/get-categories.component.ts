@@ -9,17 +9,19 @@ import { CategoryService } from 'src/app/Services/category/category.service';
 })
 export class GetCategoriesComponent {
   categories: any;
+  loading:boolean = true;
   constructor(private cryptoJsService: CryptoJsService, private categoryService: CategoryService) {
-
+    
   }
 
   ngOnInit() {
     this.categoryService.categories().subscribe(response => {
       console.log(response);
       this.categories = response;
+      this.loading = false;
     },
       error => {
-
+      this.loading = false;
       });
   }
 }
