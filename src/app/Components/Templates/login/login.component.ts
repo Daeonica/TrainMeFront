@@ -19,6 +19,7 @@ export class LoginComponent {
   show = '';
   alert = '';
   messages = [];
+  loading = false;
 
 
   constructor(private userService: UserService, private router: Router, private cookieService: CookieService, private CryptoJsService: CryptoJsService) {
@@ -34,6 +35,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.loading = true;
+
     const data = this.loginForm.value;
     let user = new User(data.email, data.password, '', 1, 1, 1, '', new Role('', '', ''));
     this.userService.login(user).subscribe(response => {
@@ -47,8 +50,10 @@ export class LoginComponent {
       console.log(response.messages);
       this.messages = response.messages;
       this.show = 'show';
+      this.loading = false;
+
     }, error => {
-      console.log(error);
+      this.loading = false;
     })
   }
 

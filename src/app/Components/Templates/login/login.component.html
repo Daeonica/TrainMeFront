@@ -1,38 +1,53 @@
-<div class="pt-4">
-  <div class="text-center">
-    <h1 class="my-5">Login</h1>
-  </div>
-  <form [formGroup]="loginForm" class="container border bg-light w-50 p-3 mb-5">
+<div class="px-4 mx-auto max-w-screen-2xl h-full py-2 flex justify-center sm:px-6 lg:px-8">
 
+  <form [formGroup]="loginForm" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full" action="#">
     <div *ngIf='alert != ""' class="alert alert-{{alert}} alert-dismissible fade {{show}}" role="alert">
       <div *ngFor="let message of messages">{{message}}</div>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
         (click)="closeAlert()"></button>
     </div>
+    <div *ngIf="!loading">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+          <input type="email" formControlName="email" name="country" id="country" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Email" required="">
+          <div class="text-red-400 text-sm font-thin" *ngIf="loginForm.get('email').touched && (loginForm.get('email').hasError('required') || loginForm.get('email').hasError('email'))">
+            <div *ngIf="loginForm.get('email').hasError('required')">
+              Email is required.
+            </div>
+            <div *ngIf="loginForm.get('email').hasError('email')">
+              Email must be a valid email address.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+          <input type="password" formControlName="password" name="password" id="password" placeholder="••••••••"
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required="">
+        </div>
 
+      </div>
+      <div class="w-full">
+        <button [disabled]="loginForm.invalid"
+          class="w-full mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
+          type="submit" (click)="onSubmit()">
+          Sign In
+        </button>
+      </div>
+      <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+        Already not registered? <a href="/register"
+          class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign Up</a>
+      </p>
+    </div>
 
-    <div class="form-floating mb-3">
-      <input formControlName="email"  class="form-control"  style="height: fit-content !important;" id="floatingInput" aria-describedby="emailHelp" placeholder="Email">
-      <label for="floatingInput">Email address</label>
+    <div
+      class="flex justify-center gap-10 px-2 py-3 overflow-auto rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center max-h-96"
+      *ngIf="loading">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
     </div>
-    <div class="text-danger" *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('required')">
-      The email is required
-    </div>
-    <div class="text-danger" *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('email')">
-      Email format incorrect
-    </div>
-    <div class="form-floating">
-      <input type="password" formControlName="password" class="form-control" style="height: fit-content !important;" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-    <div class="text-danger"
-      *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')">
-      Password not required
-    </div>
-    <div class="form-group my-3 p-0">
-      <button type="submit" (click)="onSubmit()"style="border-radius: 2px !important;"
-        class="btn btn-lg btn-danger form-control">Login</button>
-    </div>
+
   </form>
 </div>
-

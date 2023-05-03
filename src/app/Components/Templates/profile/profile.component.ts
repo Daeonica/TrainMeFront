@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Role } from 'src/app/Models/Role';
 import { CryptoJsService } from 'src/app/Services/crypto-js/crypto-js.service';
 import { UserService } from 'src/app/Services/user/user.service';
+import { url } from 'src/app/Services/proxy';
 
 
 @Component({
@@ -26,20 +27,28 @@ export class ProfileComponent {
   show = '';
   alert = '';
   file: any;
-  img= '';
+  @Input() img = '';
+  @Output() setImage = new EventEmitter<string>();
+  loading = false;
 
   constructor(private userService: UserService, private router: Router, private cookieService: CookieService, private CryptJsService: CryptoJsService) {
     this.cookie = this.cookieService.get("user");
+
   }
 
   logout() {
     this.cookieService.delete('user');
-    this.cookie = '';
+    this.router.navigate(['/']);
+
   }
 
   ngOnInit() {
+    if (this.cookie == '') {
+      this.router.navigate(['/']);
+
+    }
     this.user = this.CryptJsService.decrypt(this.cookie)
-    this.img = 'http://127.0.0.1:8000/user/image/' + this.user.id;
+    this.img = url + 'user/image/' + this.user.id;
 
     this.updateForm = new FormGroup({
       name: new FormControl(this.user.name),
@@ -54,21 +63,26 @@ export class ProfileComponent {
 
   onUpdate() {
     const data = this.updateForm.value;
-    console.log(data);
     let user = new User(data.email, data.password, data.confirmPassword, this.user.id, data.name, data.surname, '', new Role('', '', ''));
-    console.log(user);
+    this.loading = true;
+    console.log(data);
     this.userService.update(user).subscribe(response => {
       if (response.code == '200') {
-        document.cookie = 'user=' + this.CryptJsService.encrypt(response.user);
-        this.cookie = this.cookieService.get("user");
-        this.user = this.CryptJsService.decrypt(this.cookie);
-        this.alert = 'success';
+        this.cookieService.set("user", this.CryptJsService.encrypt(response.user));
+        this.user = response.user;
+        this.alert = 'green';
+        this.setImage.emit(url + 'user/image/' + this.user.id)
       } else {
-        this.alert = 'warning';
+        this.alert = 'red';
       }
+      console.log(response);
       this.messages = response.messages;
       this.show = 'show';
+      this.loading = false;
+
     }, error => {
+      this.loading = false;
+
     })
   }
 
@@ -89,22 +103,28 @@ export class ProfileComponent {
 
   uploadFile() {
     console.log(this.file);
+    this.loading = true;
+
     this.userService.uploadFile(this.file).subscribe(response => {
       if (response.code == 200) {
-        this.alert = 'success';
+        this.alert = 'green';
         this.router.navigate(['/profile']);
-      }else{
-        this.alert = 'warning';
+      } else {
+        this.alert = 'red';
       }
       this.show = 'show';
       this.messages = response.messages;
+      this.loading = false;
+
     },
       error => {
         console.log(error)
+        this.loading = false;
       })
   }
 
   downloadFile() {
+    this.loading = true;
     this.userService.downloadFile().subscribe((blob: Blob) => {
       let url = window.URL.createObjectURL(blob);
       let a = document.createElement('a');
@@ -113,6 +133,8 @@ export class ProfileComponent {
       a.click();
       window.URL.revokeObjectURL(url);
       console.log(blob);
+      this.loading = false;
+
     })
   }
 
