@@ -1,17 +1,61 @@
-<form [formGroup]="createForm" class="container border" style="width: 30%; margin-bottom: 50px; padding-top: 20px;">
-  <div  *ngIf = 'alert != ""' class="alert alert-{{alert}} alert-dismissible fade {{show}}" role="alert">
-    <div *ngFor="let message of messages">{{message}}</div>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
-  </div>
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" formControlName="name" pattern="[a-zA-Z ]*"  class="form-control" id="name" aria-describedby="nameHelp">
-  </div>
-  <div class="form-group">
-    <label for="key_value">Key value</label>
-    <input type="text" formControlName="key_value" pattern="[a-zA-Z ]*"  class="form-control" id="description" aria-describedby="nameHelp">
-  </div>
+<div class="px-4 mx-auto max-w-screen-2xl h-full py-2 flex justify-center sm:px-6 lg:px-8">
 
+  <form [formGroup]="createForm" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full">
+    <div *ngIf='alert == "green"' class="py-1 px-2 bg-green-200 flex justify-between" role="alert">
+      <div *ngFor="let message of messages">{{message}}</div>
+      <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
+        (click)="closeAlert()">x</button>
+    </div>
+    <div *ngIf='alert == "red"' class="py-1 px-2 bg-red-200 flex justify-between" role="alert">
+      <div *ngFor="let message of messages">{{message}}</div>
+      <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
+        (click)="closeAlert()">x</button>
+    </div>
+    <div *ngIf="!loading">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+          <input type="text" formControlName="name" name="country" id="country" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Name" required="">
+          <div class="text-red-400 text-sm font-thin"
+            *ngIf="createForm.get('name').touched && createForm.get('name').hasError('required')">
+            <div *ngIf="createForm.get('name').hasError('required')">
+              Name is required.
+            </div>
 
-  <button type="submit" class="btn btn-danger mt-4 mb-5" ng-disabled = 'disabled' (click)="onCreate()">Save</button>
-</form>
+          </div>
+        </div>
+        <div>
+          <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Key value</label>
+          <input type="text" formControlName="key_value" name="country" id="country" required
+            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Key value" required="">
+          <div class="text-red-400 text-sm font-thin"
+            *ngIf="createForm.get('key_value').touched && createForm.get('key_value').hasError('required')">
+            <div *ngIf="createForm.get('key_value').hasError('required')">
+              Key value is required.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="w-full">
+        <button [disabled]="createForm.invalid"
+          class="w-full mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
+          type="submit" (click)="onCreate()">
+          Create
+        </button>
+      </div>
+
+    </div>
+
+    <div
+      class="flex justify-center gap-10 px-2 py-3 overflow-auto rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center max-h-96"
+      *ngIf="loading">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+  </form>
+</div>

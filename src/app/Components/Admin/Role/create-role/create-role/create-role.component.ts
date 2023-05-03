@@ -17,6 +17,7 @@ export class CreateRoleComponent {
   messages = [];
   show = '';
   alert = '';
+  loading = false;
 
   constructor(private route: ActivatedRoute,  private router: Router, private roleService: RoleService) {
 
@@ -35,24 +36,24 @@ export class CreateRoleComponent {
 
   }
 
-  onDelete(){
-
-  }
 
   onCreate() {
     const data = this.createForm.value;
     let role = new Role(data.id, data.name, data.key_value);
+    this.loading = true;
     this.roleService.create(role).subscribe(response => {
       if (response.code == '200') {
-        this.alert = 'success';
+        this.alert = 'green';
         this.router.navigate(['/admin/role'])
       } else {
-        this.alert = 'warning';
+        this.alert = 'red';
       }
       this.messages = response.messages;
       console.log(this.messages);
       this.show = 'show';
+      this.loading = false;
     }, error => {
+      this.loading = false;
       console.log(error);
     })
   }

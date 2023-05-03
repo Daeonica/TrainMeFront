@@ -21,6 +21,8 @@ export class EditDeleteCategoryComponent {
   updateError = false;
   show = '';
   alert = '';
+  loading = false;
+  file: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
 
@@ -64,18 +66,21 @@ export class EditDeleteCategoryComponent {
   }
 
   onUpdate() {
+    this.loading = true;
     const data = this.updateForm.value;
     let category = new Category(data.id, data.name, data.description);
     this.categoryService.update(category).subscribe(response => {
       if (response.code == '200') {
-        this.alert = 'success';
+        this.alert = 'green';
       } else {
-        this.alert = 'warning';
+        this.alert = 'red';
       }
 
       this.messages = response.messages;
+      this.loading = false;
       this.show = 'show';
     }, error => {
+      this.loading = false;
       console.log(error);
     })
   }
@@ -84,4 +89,30 @@ export class EditDeleteCategoryComponent {
     this.show = '';
     this.alert = '';
   }
+
+  catchFile(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  uploadFile() {
+    console.log(this.file);
+    this.loading = true;
+
+    this.categoryService.uploadFile(this.file, this.category.id).subscribe(response => {
+      if (response.code == 200) {
+        this.alert = 'green';
+      } else {
+        this.alert = 'red';
+      }
+      this.show = 'show';
+      this.messages = response.messages;
+      this.loading = false;
+
+    },
+      error => {
+        console.log(error)
+        this.loading = false;
+      })
+  }
+
 }

@@ -41,4 +41,14 @@ export class CategoryService {
     let body = 'data='+JSON.stringify(category);
     return this.http.post(url+'category/add', body, {headers: header})
   }
+
+  uploadFile(file: any, id:any): Observable<any>{
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post(url+'category/upload/image/'+id, formData)
+  }
+
+  downloadFile(id:any): Observable<any>{
+    return this.http.get(url+'category/image/'+id,{responseType: 'blob'})
+  }
 }

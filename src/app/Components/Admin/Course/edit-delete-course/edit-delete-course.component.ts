@@ -30,6 +30,7 @@ export class EditDeleteCourseComponent {
   fileDocument: any;
   fileVideo: any;
   img: any;
+  loading: boolean = false;
 
   constructor(private userService: UserService, private courseService: CourseService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
     this.categoryService.categories().subscribe(response => {
@@ -87,19 +88,23 @@ export class EditDeleteCourseComponent {
 
   onUpdate() {
     const data = this.updateForm.value;
+    this.loading = true;
     let user = new User('', '', '', data.user, '', '', '', new Role('', '', ''));
     let category = new Category(data.category, '', '');
     let course = new Course(data.id, data.name, data.description, data.price, '', '', user, category);
     this.courseService.update(course).subscribe(response => {
       if (response.code == '200') {
-        this.alert = 'success';
+        this.alert = 'green';
       } else {
-        this.alert = 'warning';
+        this.alert = 'red';
       }
 
       this.messages = response.messages;
       this.show = 'show';
+      this.loading = false;
+
     }, error => {
+      this.loading = false;
       console.log(error);
     })
   }
@@ -123,34 +128,46 @@ export class EditDeleteCourseComponent {
 
   uploadImage() {
     console.log(this.fileImage);
+    this.loading = true;
+
     this.courseService.uploadImage(this.fileImage, this.course.id).subscribe(response => {
       if (response.code == 200) {
-        this.alert = 'success';
-      }else{
-        this.alert = 'warning';
+        this.alert = 'green';
+      } else {
+        this.alert = 'red';
       }
       this.show = 'show';
       this.messages = response.messages;
+      this.loading = false;
+
     },
       error => {
         console.log(error)
+        this.loading = false;
+
       })
   }
 
   uploadVideo() {
+    this.loading = true;
+
     this.courseService.uploadVideo(this.fileVideo, this.course.id).subscribe(response => {
       if (response.code == 200) {
-        this.alert = 'success';
+        this.alert = 'green';
         // this.router.navigate(['/profile']);
-      }else{
-        this.alert = 'warning';
+      } else {
+        this.alert = 'red';
       }
       this.show = 'show';
       this.messages = response.messages;
       console.log(response);
+      this.loading = false;
+
     },
       error => {
         console.log(error)
+        this.loading = false;
+
       })
   }
 
@@ -158,9 +175,9 @@ export class EditDeleteCourseComponent {
     console.log(this.fileDocument);
     this.courseService.uploadFile(this.fileDocument, this.course.id).subscribe(response => {
       if (response.code == 200) {
-        this.alert = 'success';
-      }else{
-        this.alert = 'warning';
+        this.alert = 'green';
+      } else {
+        this.alert = 'red';
       }
       this.show = 'show';
       this.messages = response.messages;

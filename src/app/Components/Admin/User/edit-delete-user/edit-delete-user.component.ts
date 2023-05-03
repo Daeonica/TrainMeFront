@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -16,9 +16,7 @@ import { UserService } from 'src/app/Services/user/user.service';
 })
 export class EditDeleteUserComponent {
   user: any;
-  roles: any
   cookie: any;
-  nameOfComponent = 'Mi cuenta';
   updateChanges = false;
   updateForm: any;
   openWindow = false;
@@ -26,10 +24,9 @@ export class EditDeleteUserComponent {
   updateError = false;
   show = '';
   alert = '';
+  loading = false;
 
   constructor(private roleService: RoleService, private route: ActivatedRoute, private cookieService: CookieService, private userService: UserService, private router: Router, private CryptJsService: CryptoJsService) {
-    this.getRoles();
-
     this.updateForm = new FormGroup({
       id: new FormControl(),
       name: new FormControl(),
@@ -41,11 +38,6 @@ export class EditDeleteUserComponent {
     })
   }
 
-  getRoles() {
-    this.roleService.roles().subscribe(response => {
-      this.roles = response;
-    });
-  }
 
   ngOnInit() {
 
@@ -54,10 +46,10 @@ export class EditDeleteUserComponent {
       console.log(this.user);
       this.updateForm = new FormGroup({
         id: new FormControl(this.route.snapshot.paramMap.get('id')),
-        name: new FormControl(this.user.name),
-        surname: new FormControl(this.user.surname),
+        name: new FormControl(this.user.name, [Validators.required]),
+        surname: new FormControl(this.user.surname,  [Validators.required]),
         email: new FormControl(this.user.email, [Validators.email]),
-        role: new FormControl(this.user.role.id)
+        role: new FormControl(this.user.role.id, [Validators.required])
       })
 
     }, error => {
@@ -85,18 +77,23 @@ export class EditDeleteUserComponent {
 
   onUpdate() {
     const data = this.updateForm.value;
+    this.loading = true;
     let user = new User(data.email, data.password, data.confirmPassword, data.id, data.name, data.surname, '', new Role(data.role, '', ''));
     this.userService.update(user).subscribe(response => {
       console.log(response);
       if (response.code == '200') {
-        this.alert = 'success';
+        this.alert = 'green';
       } else {
-        this.alert = 'warning';
+        this.alert = 'red';
       }
+      this.loading = false;
+
       this.messages = response.messages;
       this.show = 'show';
     }, error => {
       console.log(error);
+      this.loading = false;
+
     })
   }
 

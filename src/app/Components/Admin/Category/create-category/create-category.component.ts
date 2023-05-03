@@ -17,8 +17,9 @@ export class CreateCategoryComponent {
   messages = [];
   show = '';
   alert = '';
+  loading = false;
 
-  constructor(private route: ActivatedRoute,  private router: Router, private categoryService: CategoryService) {
+  constructor(private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
 
 
   }
@@ -29,18 +30,19 @@ export class CreateCategoryComponent {
 
     this.createForm = new FormGroup({
       id: new FormControl(''),
-      name: new FormControl('', [Validators.required ]),
-      description: new FormControl('', [Validators.required ]),
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
     })
 
   }
 
-  onDelete(){
+  onDelete() {
 
   }
 
   onCreate() {
     const data = this.createForm.value;
+    this.loading = true;
     let category = new Category(data.id, data.name, data.description);
     this.categoryService.create(category).subscribe(response => {
       if (response.code == '200') {
@@ -51,9 +53,12 @@ export class CreateCategoryComponent {
       }
       this.messages = response.messages;
       console.log(this.messages);
+      this.loading = false;
       this.show = 'show';
     }, error => {
       console.log(error);
+      this.loading = false;
+
     })
   }
 
