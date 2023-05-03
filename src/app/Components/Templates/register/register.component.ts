@@ -15,13 +15,14 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class RegisterComponent {
   nameOfComponent = 'Register';
-  registerError =false;
+  registerError = false;
   openWindow = false;
   alert = '';
   messages = [];
   show = '';
-  roles:any;
+  roles: any;
   registerForm: any;
+  loading = false;
 
 
   constructor(private userService: UserService, private cookieService: CookieService, private router: Router, private roleService: RoleService, private CryptoJsService: CryptoJsService) {
@@ -29,11 +30,11 @@ export class RegisterComponent {
   }
 
 
-  getRoles(){
-    this.roleService.roles().subscribe(response=>{
+  getRoles() {
+    this.roleService.roles().subscribe(response => {
       let roles = [];
       for (let index = 0; index < response.length; index++) {
-        if (response[index].key_value != 'admin' ) {
+        if (response[index].key_value != 'admin') {
           roles.push(response[index]);
         }
       }
@@ -46,7 +47,7 @@ export class RegisterComponent {
     this.getRoles();
     this.registerForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      surname:new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
@@ -58,27 +59,31 @@ export class RegisterComponent {
     const data = this.registerForm.value;
     console.log(data);
     let role = new Role(data.role, '', '');
-    let user = new User(data.email, data.password, data.confirmPassword,0, data.name,data.surname, '',role);
+    this.loading = true;
+    let user = new User(data.email, data.password, data.confirmPassword, 0, data.name, data.surname, '', role);
     this.userService.register(user).subscribe(response => { //register, funcion con la que enviamos los datos a synfony -- response nos devuelve un json response con distintos indices.
       //los distintos indices del response se accede mediante el .
       if (response.code == '200') {
         console.log(response);
         document.cookie = 'user=' + this.CryptoJsService.encrypt(response.user);
         this.router.navigate(['profile']);
-        this.alert = 'success';
-      }else{
-        this.alert = 'warning';
+        this.alert = 'green';
+      } else {
+        this.alert = 'red';
       }
-      this.messages= response.messages;
+      this.messages = response.messages;
       this.show = 'show';
+      this.loading = false;
+
     }, error => {
       console.log(error);
+      this.loading = false;
 
     })
   }
 
 
-  closeAlert(){
+  closeAlert() {
     this.show = '';
     this.alert = '';
   }
