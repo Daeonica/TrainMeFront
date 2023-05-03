@@ -42,10 +42,10 @@ export class LoginComponent {
     this.userService.login(user).subscribe(response => {
       if (response.code == '200') {
         document.cookie = 'user=' + this.CryptoJsService.encrypt(response.user);
-        this.alert = 'success';
+        this.alert = 'green';
         this.router.navigate(['profile']);
       }else{
-        this.alert = 'warning';
+        this.alert = 'red';
       }
       console.log(response.messages);
       this.messages = response.messages;

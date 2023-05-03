@@ -12,7 +12,7 @@ export class UserCoursesComponent {
   allCourses: any;
   cookie: any;
   user: any;
-  userCourses: any;
+  loading = true;
 
   constructor(private cryptoJsService: CryptoJsService, private courseService: CourseService, private cookieService: CookieService) {
     this.cookie = this.cookieService.get("user");
@@ -23,8 +23,10 @@ export class UserCoursesComponent {
     this.courseService.trainerCourses(this.user.id).subscribe(response => {
       console.log(response);
       this.allCourses = response;
+      this.loading = false;
     },
       error => {
+        this.loading = false;
 
       });
 

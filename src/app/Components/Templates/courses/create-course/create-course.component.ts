@@ -17,8 +17,6 @@ export class CreateCourseComponent {
   componentName = 'Crea tu curso';
   formCreateCourse: any;
   categories: any;
-  show: any;
-  alert: any;
   messages = [];
   cookie: any;
   user: any;
@@ -42,8 +40,6 @@ export class CreateCourseComponent {
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
-      documentRoot: new FormControl('', [Validators.required]),
-      imgPath: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required])
     })
   }
@@ -57,12 +53,9 @@ export class CreateCourseComponent {
 
       if (response.code == '200') {
         this.router.navigate(['profile']);
-        this.alert = 'success';
       } else {
-        this.alert = 'warning';
       }
       this.messages = response.messages;
-      this.show = 'show';
     }, error => {
       console.log(error);
     });

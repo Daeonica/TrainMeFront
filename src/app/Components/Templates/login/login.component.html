@@ -1,10 +1,15 @@
 <div class="px-4 mx-auto max-w-screen-2xl h-full py-2 flex justify-center sm:px-6 lg:px-8">
 
   <form [formGroup]="loginForm" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full" action="#">
-    <div *ngIf='alert != ""' class="alert alert-{{alert}} alert-dismissible fade {{show}}" role="alert">
+    <div *ngIf='alert == "green"' class="py-1 px-2 bg-green-200 flex justify-between" role="alert">
       <div *ngFor="let message of messages">{{message}}</div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-        (click)="closeAlert()"></button>
+      <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
+        (click)="closeAlert()">x</button>
+    </div>
+    <div *ngIf='alert == "red"' class="py-1 px-2 bg-red-200 flex justify-between" role="alert">
+      <div *ngFor="let message of messages">{{message}}</div>
+      <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
+        (click)="closeAlert()">x</button>
     </div>
     <div *ngIf="!loading">
       <div class="grid grid-cols-1 gap-4">
