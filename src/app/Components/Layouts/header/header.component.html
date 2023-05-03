@@ -39,20 +39,73 @@
             About
           </a>
         </div>
-        <div>
+        <div *ngIf="user == null">
           <a href="/register">
             <button class="py-[13px] px-[48px] bg-red-train-me text-white rounded-[35px]">Sign Up</button>
           </a>
         </div>
-        <div>
+        <div *ngIf="user == null">
           <a href="/login">
             <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[35px]">Sign
               In</button>
           </a>
         </div>
+        <div *ngIf="user != null" >
+          <a href="/profile">
+            <img src="{{url}}user/image/{{user.id}}" class="w-10 w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
+          </a>
+        </div>
       </div>
-      <div class="xl:hidden">
+      <div class="xl:hidden" (click)="toggleMenu()">
         <img src="../../../../assets/img/menu-icon.png" alt="">
+      </div>
+
+
+    </div>
+    <div *ngIf="menuVisible" class="menu-dropdown grid justify-center">
+      <div>
+        <form>
+          <input type="email" [(ngModel)]="query" name="query" placeholder="Search course.."
+            class="py-[3px] px-2 outline-none border rounded-l-[5px]">
+          <button (click)="searchButton()" class="rounded-r-[35px] -m-2 py-1 px-2 text-white bg-[#FF0000]">
+            Search
+          </button>
+        </form>
+      </div>
+      <div>
+        <a href="/courses/search"
+          class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+          Courses
+        </a>
+      </div>
+      <div>
+        <a href="/trainers/search"
+          class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+          Trainers
+        </a>
+      </div>
+      <div>
+        <a href="/categories/search"
+          class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+          Categories
+        </a>
+      </div>
+      <div>
+        <a href="/about"
+          class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+          About
+        </a>
+      </div>
+      <div *ngIf="user == null">
+        <a href="/register">
+          <button class="py-1 px-2 bg-red-train-me text-white rounded-[35px]">Sign Up</button>
+        </a>
+      </div>
+      <div *ngIf="user == null">
+        <a href="/login">
+          <button class="py-1 mt-2 px-2 border-[#FF0000] border-[2px] rounded-[35px]">Sign
+            In</button>
+        </a>
       </div>
     </div>
   </div>

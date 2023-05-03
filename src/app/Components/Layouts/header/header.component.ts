@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CategoryService } from 'src/app/Services/category/category.service';
 import { CryptoJsService } from 'src/app/Services/crypto-js/crypto-js.service';
+import { url } from 'src/app/Services/proxy.example';
 import { UserService } from 'src/app/Services/user/user.service';
 
 
@@ -16,6 +17,14 @@ import { UserService } from 'src/app/Services/user/user.service';
 export class HeaderComponent {
   user: any;
   query: string = '';
+  url = url;
+
+  menuVisible = false;
+
+  toggleMenu() {
+    this.menuVisible = !this.menuVisible;
+  }
+
   constructor(private CookieService: CookieService, private CryptoJsService: CryptoJsService, private route: Router) {
   }
 
