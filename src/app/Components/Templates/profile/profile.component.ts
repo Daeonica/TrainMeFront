@@ -87,14 +87,17 @@ export class ProfileComponent {
   }
 
   onDelete() {
-    this.userService.delete(this.user).subscribe(response => {
-      if (response.code == '200') {
-        this.cookieService.delete('user');
-        this.cookie = '';
-        this.router.navigate(['about']);
-      } else {
-      }
-    });
+    if (confirm('Confirm delete?')) {
+      this.userService.delete(this.user).subscribe(response => {
+        if (response.code == '200') {
+          this.cookieService.delete('user');
+          this.cookie = '';
+          this.router.navigate(['about']);
+        } else {
+        }
+      });
+    }
+
   }
 
   catchFile(event: any) {
