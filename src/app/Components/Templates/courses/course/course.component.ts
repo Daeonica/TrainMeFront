@@ -14,6 +14,7 @@ import { ReviewService } from 'src/app/Services/review/review.service';
 import { UserService } from 'src/app/Services/user/user.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { core } from '@angular/compiler';
+import { url } from 'src/app/Services/proxy';
 
 
 
@@ -34,9 +35,8 @@ export class CourseComponent implements OnInit {
   reviews: any;
   commentForm: any;
   loading: boolean = true;
-  sub_loading: boolean = false;
-  payment_loading: boolean = false;
-  review_loading: boolean = false;
+  url = url
+
 
   @Input() purchased!: any;
   @Output() setPurchase = new EventEmitter<any>();
@@ -87,11 +87,11 @@ export class CourseComponent implements OnInit {
 
   courseReviews() {
 
-    this.sub_loading = true;
+    this.loading = true;
     this.reviewService.reviews(this.route.snapshot.paramMap.get('id')).subscribe(response => {
       this.reviews = response;
-      this.sub_loading = false;
-
+      this.loading = false;
+      console.log(this.reviews);
     },
       error => {
 
@@ -99,10 +99,10 @@ export class CourseComponent implements OnInit {
   }
 
   buy() {
-    this.payment_loading = true;
+    this.loading = true;
 
     this.courseService.purchaseCourse(this.user.id, this.route.snapshot.paramMap.get('id')).subscribe(response => {
-      this.payment_loading = false;
+      this.loading = false;
 
       if (response.code == '200') {
         this.purchased = true;
@@ -120,7 +120,7 @@ export class CourseComponent implements OnInit {
 
   deleteReview(reviewId: any) {
 
-    this.review_loading = true;
+    this.loading = true;
 
     this.reviewService.delete(reviewId).subscribe(response => {
       if (response.code == '200') {
@@ -129,7 +129,7 @@ export class CourseComponent implements OnInit {
       } else {
         this.alert = 'warning'
       }
-      this.review_loading = false;
+      this.loading = false;
       this.show = 'show';
       this.messages = response.messages;
     })
@@ -137,7 +137,7 @@ export class CourseComponent implements OnInit {
 
   createReview() {
     let comment = this.commentForm.value;
-    this.review_loading = true;
+    this.loading = true;
     this.reviewService.create(this.user.id, this.course.id, comment).subscribe(response => {
       if (response.code == 200) {
         this.alert = 'success';
@@ -146,7 +146,7 @@ export class CourseComponent implements OnInit {
       } else {
         this.alert = 'warning'
       }
-      this.review_loading = false;
+      this.loading = false;
 
 
       this.show = 'show';
