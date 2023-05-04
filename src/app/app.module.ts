@@ -40,6 +40,7 @@ import { CategoriesSearchComponent } from './Components/Category/categories-sear
 import { TrainersSearchComponent } from './Components/Trainer/trainers-search/trainers-search.component';
 import { TrainerProfileComponent } from './Components/Templates/trainer-profile/trainer-profile.component';
 import { CategoryProfileComponent } from './Components/Templates/category-profile/category-profile/category-profile.component';
+import { GetStudentsByCourseComponent } from './Components/Trainer/get-students-by-course/get-students-by-course.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'course/:id', component: CourseComponent},
   { path: 'category/:id', component: CategoryProfileComponent},
   { path: 'course/trainer/create', component: CreateCourseComponent},
+  { path: 'trainer/students/:id', component: GetStudentsByCourseComponent},
   { path: 'course/update/:id', component: EditDeleteCourseComponent},
   { path: 'trainers/search', component: TrainersSearchComponent},
   { path: 'trainer/:id', component: TrainerProfileComponent},
@@ -105,6 +107,7 @@ const routes: Routes = [
     TrainersSearchComponent,
     TrainerProfileComponent,
     CategoryProfileComponent,
+    GetStudentsByCourseComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],

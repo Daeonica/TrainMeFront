@@ -43,12 +43,17 @@
           </div>
 
         </div>
-        <div class="w-full">
+        <div class="flex justify-between">
           <button [disabled]="updateForm.invalid"
-            class="w-full mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
-            type="submit" (click)="onUpdate()">
-            Create
+            class="mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
+            type="submit" (click)="onDelete()">
+            Delete
           </button>
+          <button [disabled]="updateForm.invalid"
+          class="mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
+          type="submit" (click)="onUpdate()">
+          Create
+        </button>
         </div>
 
       </div>

@@ -14,6 +14,7 @@ export class PurchasedCoursesComponent {
   allCourses: any;
   cookie: any;
   user: any;
+  loading: boolean = true;
 
   constructor(private cryptoJsService: CryptoJsService, private courseService: CourseService, private cookieService: CookieService, private route: ActivatedRoute) {
     this.cookie = this.cookieService.get("user");
@@ -22,7 +23,14 @@ export class PurchasedCoursesComponent {
   ngOnInit() {
     this.user = this.cryptoJsService.decrypt(this.cookie);
     this.courseService.getPurchasedCourses(this.route.snapshot.paramMap.get('id')).subscribe((data: any) => {
-      this.allCourses = data.purchases;
+      let purchases = data.purchases;
+      let courses = [];
+      for (let i = 0; i < purchases.length; i++) {
+        courses.push(purchases[i].course);
+      }
+      this.allCourses = courses;
+      console.log(this.allCourses);
+      this.loading = false;
     })
   }
 }

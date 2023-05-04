@@ -92,6 +92,11 @@ export class CourseService {
     return this.http.get(url+'purchased-courses/'+user_id, { headers: header })
   }
 
+  getUsersPurchasedCourses(course_id: any): Observable<any>{
+    let header = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    return this.http.get(url+'purchased-courses/users/'+course_id, { headers: header })
+  }
+
   categoryCoursesCount(id: any): Observable<any>{
     return this.http.get(url+'count/category-courses/'+id)
   }

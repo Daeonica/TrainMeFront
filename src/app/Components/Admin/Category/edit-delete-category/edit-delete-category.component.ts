@@ -55,6 +55,7 @@ export class EditDeleteCategoryComponent {
   }
 
   onDelete() {
+    console.log(this.category);
     this.categoryService.delete(this.category).subscribe(response => {
       if (response.code == '200') {
         this.router.navigate(['/admin/category']);

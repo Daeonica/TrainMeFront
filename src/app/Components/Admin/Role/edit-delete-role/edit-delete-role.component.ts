@@ -20,7 +20,7 @@ export class EditDeleteRoleComponent {
   updateError = false;
   show = '';
   alert = '';
-
+  loading = true;
   constructor(private route: ActivatedRoute, private router: Router, private roleService: RoleService) {
 
     this.updateForm = new FormGroup({
@@ -32,10 +32,6 @@ export class EditDeleteRoleComponent {
 
 
   ngOnInit() {
-
-
-
-
     this.roleService.getRoleById(this.route.snapshot.paramMap.get('id')).subscribe(response => {
       this.role = response;
       this.updateForm = new FormGroup({
@@ -43,12 +39,11 @@ export class EditDeleteRoleComponent {
         name: new FormControl(this.role.name),
         key_value: new FormControl(this.role.key_value),
       })
-
+      this.loading = false;
     }, error => {
+      this.loading = false;
 
     });
-
-
   }
 
   onDelete() {
@@ -64,19 +59,24 @@ export class EditDeleteRoleComponent {
   }
 
   onUpdate() {
+    this.loading = true;
     const data = this.updateForm.value;
     let role = new Role(data.id, data.name, data.key_value);
     this.roleService.update(role).subscribe(response => {
       if (response.code == '200') {
-        this.alert = 'success';
+        this.alert = 'green';
       } else {
-        this.alert = 'warning';
+        this.alert = 'red';
       }
 
       this.messages = response.messages;
       this.show = 'show';
+      this.loading = false;
+
     }, error => {
       console.log(error);
+      this.loading = false;
+
     })
   }
 

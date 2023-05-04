@@ -29,6 +29,12 @@
               type="submit" (click)="buy()">
               Buy!
             </button>
+            <div *ngIf="purchased">
+              <button (click)="downloadFile()"
+              class="w-full px-2 py-1 font-bold text-white rounded bg-green-300 hover:bg-green-500 text-sm"
+>
+              Download</button>
+            </div>
           </div>
         </div>
       </div>
@@ -44,9 +50,8 @@
           Testimonials
         </h3>
         <p class="mb-6 pb-2 md:mb-12 md:pb-0">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error
-          amet numquam iure provident voluptate esse quasi, veritatis totam
-          voluptas nostrum quisquam eum porro a pariatur veniam.
+          What other students turned professionals have to say about us after learning with us and reaching their
+          goals.
         </p>
       </div>
       <form [formGroup]="commentForm" *ngIf="purchased" class="w-full border-2 mb-2 bg-white">
@@ -80,14 +85,44 @@
             {{review.comment}}
           </p>
           <div class="" *ngIf="user != undefined">
-            <button class="px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-sm" *ngIf="review.user.id == user.id"
-              (click)="deleteReview(review.id)">eliminar</button>
+            <button class="px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-sm"
+              *ngIf="review.user.id == user.id" (click)="deleteReview(review.id)">eliminar</button>
           </div>
         </div>
       </div>
     </div>
-    <div>
-      
+    <div class="rounded-sm bg-gray1-train-me py-3 px-5 my-3">
+      <div class="flex justify-center">
+        <h1 class="text-center font-bold text-xl">More courses width same category</h1>
+      </div>
+      <div class="pt-4 font-bold overflow-auto max-h-44" *ngIf="category_courses != null">
+
+        <div class="justify-between items-center px-8 py-8 mb-5 md:flex bg-gray-50"
+          *ngFor="let course of category_courses">
+          <div *ngIf="course.id != course.id">
+            <div class="flex gap-2 items-center justfy-center">
+              <img class="w-32 h-32" src="{{url}}course/image/{{course.id}}" alt="">
+              <div class="grid grid-rows-2 gap-5">
+                <div>
+                  <p class="uppercase">{{course.name}}</p>
+                  <p class="font-medium text-md">{{course.description}}</p>
+                </div>
+                <div>
+                  <p class="font-light tex-sm">{{course.category.name}}</p>
+                  <p class="text-[#FF0000] font-bold">{{course.price}}€</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <a href="/course/{{course.id}}">
+                <button
+                  class="px-4 py-2 mt-2 text-white bg-red-train-me hover:bg-red-700 rounded text-[20px]">View</button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
     <div></div>
   </div>

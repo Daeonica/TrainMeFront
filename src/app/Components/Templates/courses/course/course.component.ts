@@ -36,7 +36,7 @@ export class CourseComponent implements OnInit {
   commentForm: any;
   loading: boolean = true;
   url = url
-
+  category_courses:any = [];
 
   @Input() purchased!: any;
   @Output() setPurchase = new EventEmitter<any>();
@@ -77,6 +77,8 @@ export class CourseComponent implements OnInit {
       this.setPurchase.emit(this.purchased);
 
       this.loading = false;
+      this.getCategoryCourses();
+
     }, error => {
       console.log(error);
 
@@ -116,6 +118,12 @@ export class CourseComponent implements OnInit {
       this.show = 'show';
 
     });
+  }
+
+  getCategoryCourses() {
+    this.courseService.coursesByCategory(this.course.id).subscribe((res: any) => {
+      this.category_courses = res;
+    })
   }
 
   deleteReview(reviewId: any) {
