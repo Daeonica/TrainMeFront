@@ -19,16 +19,15 @@
           <td class="px-4 bg-white py-2">{{user.email}}</td>
           <td class="px-4 bg-white py-2">{{user.role.name}}</td>
           <td class="px-4 bg-white py-2">
-            <div class="flex gap-2">
-              <button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button>
-              <button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button>
-              <button> <a href="/admin/user/update/{{user.id}}">Edit</a> </button>
-            </div>
+            <button class="px-2 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-700"> <a
+                href="/admin/user/update/{{user.id}}">Edit</a> </button>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96" *ngIf="loading">
+  <div
+    class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96"
+    *ngIf="loading">
     <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
   </div>
 </section>
