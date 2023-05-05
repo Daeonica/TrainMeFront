@@ -1,10 +1,10 @@
-<section class="mb-5" *ngIf="trainer != null">
+<section class="pb-5 bg-gray-200" *ngIf="trainer != null">
   <div class="px-4 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
 
     <div *ngIf="!loading">
       <section class="">
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
-          <div class="grid grid-cols-2 gap-2 px-5 py-8 border border-gray-300 md:grid-cols-5">
+        <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6">
+          <div class="grid grid-cols-2 gap-2 px-5 py-8 bg-black-train-me text-white md:grid-cols-5">
             <div class="">
               <img class="mr-4 h-165 w-165" src="{{url}}user/image/{{trainer.id}}" alt="Foto de perfil">
             </div>
@@ -16,7 +16,7 @@
                   <p class="text-[20px]">{{trainer.email}}</p>
                 </div>
                 <div class="p-2">
-                  <a routerLink="/contact">
+                  <a>
                     <button
                       class="px-4 py-2 mt-2 text-white bg-red-train-me hover:bg-red-700 rounded text-[20px]">Contactar</button>
                   </a>
@@ -29,8 +29,8 @@
 
 
       <section class="">
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
-          <div class="px-8 py-8 border-gray-300 rounded-[5px] border">
+        <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6">
+          <div class="px-8 py-8 border-gray-100 bg-white rounded-[5px] border">
             <h3 class="text-xl">Sobre mí</h3>
             <p class="">
               {{trainer.description}}
@@ -40,14 +40,14 @@
       </section>
 
       <section>
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6 ">
-          <div class="py-8 px-5 border border-gray-300 rounded-[5px]">
+        <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 ">
+          <div class="py-8 px-5 border bg-white border-gray-100 rounded-[5px]">
             <h3 class="text-[21px] border-b">Cursos</h3>
-            <div class="pt-4 font-bold overflow-auto max-h-44" *ngIf="courses != null">
+            <div class="pt-4 font-bold overflow-auto max-h-xl" *ngIf="courses != null">
 
               <div class="justify-between items-center px-8 py-8 mb-5 md:flex bg-gray-50"
                 *ngFor="let course of courses">
-                <div class="flex gap-2 items-center justfy-center">
+                <div class="flex gap-5 items-center justfy-center">
                   <img class="w-32 h-32" src="{{url}}course/image/{{course.id}}" alt="">
                   <div class="grid grid-rows-2 gap-5">
                     <div>
@@ -75,8 +75,8 @@
       </section>
 
       <section class="">
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
-          <div class="px-8 py-8 border border-gray-300 rounded-[5px]">
+        <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6">
+          <div class="px-8 py-8 border border-gray-100 bg-white rounded-[5px]">
             <h3 class="text-[21px] ">Comunicate con {{trainer.name}}</h3>
 
             <form id="contact">

@@ -21,7 +21,7 @@ export class SearchFilterComponent {
   selectedCategories: any;
   loading: boolean = true;
   url: any;
-
+  search_name: any;
 
   @Input() coursesToShow!: any;
   @Output() updateArrayCourseToShow = new EventEmitter<any>();
@@ -34,7 +34,7 @@ export class SearchFilterComponent {
 
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
 
   }
 
@@ -47,7 +47,6 @@ export class SearchFilterComponent {
         this.selectedCategories.push(this.categories[index]);
       }
     }
-    console.log(this.selectedCategories)
     this.getAllCourseByFilter();
   }
 
@@ -59,7 +58,7 @@ export class SearchFilterComponent {
     this.getAllCourseByFilter();
   }
 
-  getAllCourses(): any{
+  getAllCourses(): any {
     this.courseService.courses().subscribe(response => {
       this.coursesToShow = response;
       this.courses = response;
@@ -70,19 +69,36 @@ export class SearchFilterComponent {
       })
   }
 
+  updateName() {
+    this.getAllCourseByFilter();
+  }
 
 
   getAllCourseByFilter() {
     this.coursesToShow = [];
+    console.log(this.selectedCategories);
     for (let i = 0; i < this.courses.length; i++) {
       if (this.selectedCategories.length == 0) {
         if ((Number(this.courses[i].price) <= Number(this.max_price)) && (Number(this.courses[i].price) >= Number(this.min_price))) {
-          this.coursesToShow.push(this.courses[i])
+          if (this.search_name != undefined && this.search_name != "") {
+            if (this.courses[i].name.toLowerCase().includes(this.search_name.toLowerCase())) {
+              this.coursesToShow.push(this.courses[i])
+            }
+          } else {
+            this.coursesToShow.push(this.courses[i])
+          }
         }
-      } else {
+      }
+      else {
         for (let j = 0; j < this.selectedCategories.length; j++) {
           if ((this.courses[i].category.id == this.selectedCategories[j].id) && (Number(this.courses[i].price) <= Number(this.max_price)) && (Number(this.courses[i].price) >= Number(this.min_price))) {
-            this.coursesToShow.push(this.courses[i])
+            if (this.search_name != undefined && this.search_name != "") {
+              if (this.courses[i].name.toLowerCase().includes(this.search_name.toLowerCase())) {
+                this.coursesToShow.push(this.courses[i])
+              }
+            } else {
+              this.coursesToShow.push(this.courses[i])
+            }
           }
         }
       }
@@ -92,30 +108,8 @@ export class SearchFilterComponent {
     this.updateArrayCourseToShow.emit(this.coursesToShow);
   }
 
-
-
-  config: PaginationInstance = {
-    id: 'mi-paginacion',
-    itemsPerPage: 10,
-    currentPage: 1
-  };
-
   ngOnInit() {
     this.getCategory();
-    if(this.route.snapshot.paramMap.get('query') != null){
-      this.courseService.getCoursesByQuery(this.route.snapshot.paramMap.get('query')).subscribe(response => {
-        this.coursesToShow = response;
-        this.courses = response;
-        this.loading = false;
-
-      },
-        error => {
-
-        })
-    }else{
-      this.getAllCourses();
-    }
-
   }
 
   getCategory() {
@@ -124,6 +118,8 @@ export class SearchFilterComponent {
         response[i].selected = true;
       }
       this.categories = response;
+      this.getAllCourses();
+
     })
   }
 

@@ -1,10 +1,9 @@
-<div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+<div class="max-w-screen-2xl bg-gray-100 mx-auto py-10 px-4 sm:px-6 lg:px-8">
   <div *ngIf="!loading">
-    <div
-      class="p-5 rounded-sm bg-black-train-me md:grid-cols-2 grid gap-3 justify-items-stretch md:justify-items-center">
+    <div class="p-5 rounded-sm bg-black-train-me md:grid-cols-2 grid gap-3 items-content-center">
       <div class="flex gap-5">
         <div>
-          <img src="{{url}}course/image/{{course.id}}" class="max-w-lg" alt="">
+          <img src="{{url}}course/image/{{course.id}}" class="max-w-lg w-full min-w-md" alt="">
         </div>
         <div class="text-white grid ">
           <div>
@@ -20,31 +19,50 @@
           </div>
           <div>
             <button *ngIf="user == null"
-              class="w-full px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-sm"
+              class="w-full px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-4xl"
               type="submit" routerLink="/login">
               Buy!
             </button>
             <button *ngIf="user != null && !purchased"
-              class="w-full px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-sm"
+              class="w-full px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-4xl"
               type="submit" (click)="buy()">
               Buy!
             </button>
             <div *ngIf="purchased">
               <button (click)="downloadFile()"
-              class="w-full px-2 py-1 font-bold text-white rounded bg-green-300 hover:bg-green-500 text-sm"
->
-              Download</button>
+                class="w-full px-2 py-1 font-bold text-white rounded bg-green-300 hover:bg-green-500 text-4xl">
+                Download</button>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <video class="max-w-lg w-full" muted autoplay loop controls>
-          <source [src]="url+'course/video/'+course.id" type="video/mp4">
-        </video>
+      <div class="flex gap-5 justify-end">
+        <div>
+          <img src="{{url}}user/image/{{course.user.id}}" class="max-w-lg w-full min-w-md" alt="">
+        </div>
+        <div class="text-white grid ">
+          <div>
+            <h4 class="font-xl mb-2">
+              {{course.user.name}}
+            </h4>
+            <h4 class="font-md my-2">
+              {{course.user.surname}}
+            </h4>
+            <h4 class="font-md mt-2">
+              {{course.user.email}}
+            </h4>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="rounded-sm bg-gray1-train-me py-3 px-5 my-3">
+    <div class="rounded-sm bg-white flex justify-center py-3 px-5 my-3">
+
+      <video class="max-w-3xl w-full max-h-64" muted autoplay loop controls>
+        <source [src]="url+'course/video/'+course.id" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="rounded-sm bg-white py-3 px-5 my-3">
       <div class="mx-auto text-center max-w-2xl">
         <h3 class="mb-6 text-3xl font-bold text-neutral-800 dark:text-neutral-200">
           Testimonials
@@ -54,21 +72,25 @@
           goals.
         </p>
       </div>
-      <form [formGroup]="commentForm" *ngIf="purchased" class="w-full border-2 mb-2 bg-white">
-        <div class="w-full flex">
-          <div class="w-full">
-            <input type="text" formControlName="comment" id="comment" name="comment" class="outline-none w-full"
-              placeholder="Write a comment">
+      <div class="flex justify-center mb-20">
+
+        <form [formGroup]="commentForm" *ngIf="purchased" class="w-full max-w-lg border-2 mb-2 bg-white">
+          <div class="">
+            <div class="">
+              <textarea name="" class="outline-none w-full" formControlName="comment" id="" cols="30" rows="5"
+                placeholder="Opina"></textarea>
+            </div>
+            <div class="flex justify-end">
+              <button type="submit"
+                class="px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-xl"
+                (click)="createReview()">Enviar</button>
+            </div>
           </div>
-          <div>
-            <button type="submit"
-              class="px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-sm"
-              (click)="createReview()">Enviar</button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
+
       <div class="grid gap-6 text-center md:grid-cols-3 lg:gap-12 overflow-auto max-h-80">
-        <div class="mb-12 md:mb-0 border rounded-md py-5 bg-white" *ngFor="let review of reviews">
+        <div class="mb-12 md:mb-0 border rounded-md py-5 bg-gray-700 text-white" *ngFor="let review of reviews">
           <div class="mb-6 flex justify-center">
             <img src="{{url}}user/image/{{review.user.id}}" class="w-32 rounded-full shadow-lg dark:shadow-black/30" />
           </div>
@@ -91,11 +113,11 @@
         </div>
       </div>
     </div>
-    <div class="rounded-sm bg-gray1-train-me py-3 px-5 my-3">
+    <div class="rounded-sm bg-white py-3 px-5 my-3" *ngIf="category_courses == null">
       <div class="flex justify-center">
-        <h1 class="text-center font-bold text-xl">More courses width same category</h1>
+        <h1 class="text-center font-bold text-xl">More courses with same category</h1>
       </div>
-      <div class="pt-4 font-bold overflow-auto max-h-44" *ngIf="category_courses != null">
+      <div class="pt-4 font-bold overflow-auto max-h-xl" *ngIf="category_courses != null">
 
         <div class="justify-between items-center px-8 py-8 mb-5 md:flex bg-gray-50"
           *ngFor="let course of category_courses">

@@ -7,15 +7,6 @@
 
       <div class="hidden xl:flex font-secondary gap-10 items-center text-[19px]">
         <div>
-          <form>
-            <input type="email" [(ngModel)]="query" name="query" placeholder="Search course.."
-              class="py-[3px] px-2 outline-none border rounded-l-[5px]">
-            <button (click)="searchButton()" class="rounded-r-[35px] -m-2 py-1 px-2 text-white bg-[#FF0000]">
-              Search
-            </button>
-          </form>
-        </div>
-        <div>
           <a href="/courses/search"
             class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
             Courses
@@ -62,16 +53,7 @@
 
 
     </div>
-    <div *ngIf="menuVisible" class="menu-dropdown grid justify-center">
-      <div>
-        <form>
-          <input type="email" [(ngModel)]="query" name="query" placeholder="Search course.."
-            class="py-[3px] px-2 outline-none border rounded-l-[5px]">
-          <button (click)="searchButton()" class="rounded-r-[35px] -m-2 py-1 px-2 text-white bg-[#FF0000]">
-            Search
-          </button>
-        </form>
-      </div>
+    <div *ngIf="menuVisible" class="grid justify-center md:hidden">
       <div>
         <a href="/courses/search"
           class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">

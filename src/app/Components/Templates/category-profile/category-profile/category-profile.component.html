@@ -1,26 +1,19 @@
-<section class="mb-5" *ngIf="category != null">
+<section class="pb-5 bg-gray-200" *ngIf="category != null">
   <div class="px-4 mx-auto max-w-screen-2xl sm:px-6 lg:px-8">
 
     <div *ngIf="!loading">
       <section class="">
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
-          <div class="grid grid-cols-2 gap-2 px-5 py-8 border border-gray-300 md:grid-cols-5">
+        <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6">
+          <div class="grid grid-cols-2 gap-2 px-5 py-8 border bg-black-train-me border-gray-300 md:grid-cols-5">
             <div class="">
               <img class="mr-4 h-165 w-165" src="{{url}}category/image/{{category.id}}" alt="Foto de perfil">
             </div>
 
-            <div class="">
+            <div class="text-white">
               <div class="grid items-center h-full grid-rows-2">
                 <div class="p-2">
                   <h2 class="text-[21px]">{{category.name}}</h2>
-                  <!-- Cantidad de cursos de esta categoría -->
-                  <p class="text-[20px]">{{category.count}}</p>
-                </div>
-                <div class="p-2">
-                  <a routerLink="/contact">
-                    <button
-                      class="px-4 py-2 mt-2 text-white bg-red-train-me hover:bg-red-700 rounded text-[20px]">Contactar</button>
-                  </a>
+                  {{category.description}}
                 </div>
               </div>
             </div>
@@ -28,23 +21,11 @@
         </div>
       </section>
 
-
-      <section class="">
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6">
-          <div class="px-8 py-8 border-gray-300 rounded-[5px] border">
-            <h3 class="text-xl">Description</h3>
-            <p class="">
-              {{category.description}}
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section>
-        <div class="px-8 py-8 mx-auto space-y-2 bg-white sm:py-4 sm:space-y-0 sm:space-x-6 ">
-          <div class="py-8 px-5 border border-gray-300 rounded-[5px]">
-            <h3 class="text-[21px] border-b">Cursos  <span class="font-extralight text-sm">{{count_courses}}</span></h3>
-            <div class="pt-4 font-bold overflow-auto max-h-44" *ngIf="courses != null">
+        <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 ">
+          <div class="py-8 px-5 border bg-white border-gray-300 rounded-[5px]">
+            <h3 class="text-[21px] border-b">Cursos <span class="font-extralight text-sm">{{count_courses}}</span></h3>
+            <div class="pt-4 font-bold overflow-auto max-h-xl" *ngIf="courses != null">
 
               <div class="justify-between items-center px-8 py-8 mb-5 md:flex bg-gray-50"
                 *ngFor="let course of courses">

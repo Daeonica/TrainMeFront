@@ -25,9 +25,12 @@ export class PurchasedCoursesComponent {
     this.courseService.getPurchasedCourses(this.route.snapshot.paramMap.get('id')).subscribe((data: any) => {
       let purchases = data.purchases;
       let courses = [];
-      for (let i = 0; i < purchases.length; i++) {
-        courses.push(purchases[i].course);
+      if (purchases != null) {
+        for (let i = 0; i < purchases.length; i++) {
+          courses.push(purchases[i].course);
+        }
       }
+
       this.allCourses = courses;
       console.log(this.allCourses);
       this.loading = false;

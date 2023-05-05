@@ -21,6 +21,11 @@
               <button> <a href="/course/{{course.id}}">View</a> </button>
             </div>
         </tr>
+        <tr class="hover:bg-gray-300 text-center" *ngIf="allCourses.length == 0">
+          <th colspan="5">
+            COURSES NOT FOUND
+          </th>
+        </tr>
       </tbody>
     </table>
 
