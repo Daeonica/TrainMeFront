@@ -13,12 +13,12 @@
   <section class="">
     <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8" *ngIf="!loading">
       <div
-        class="grid py-3 rounded-sm md:grid-cols-4 bg-gray1-train-me justify-items-center gap-3 overflow-auto max-h-96 md:max-h-[700px]">
+        class="grid py-3 rounded-sm bg-gray1-train-me justify-items-center gap-3 overflow-auto max-h-96 md:max-h-[700px]">
         <div *ngFor="let trainer of trainersToShow"
           class="font-secondary bg-white border border-gray-200 p-5 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div class="flex items-center gap-5">
-            <div class="flex justify-center mb-4" *ngIf="trainer.id != null">
-              <img class="rounded-t-lg" src="{{url}}user/image/{{trainer.id}}" class="w-52 h-44 md:w-96"
+            <div class="mb-4 w-80 h-fit" *ngIf="trainer.id != null">
+              <img class="rounded-t-lg max-h-72" src="{{url}}user/image/{{trainer.id}}"
                 alt="product image" />
             </div>
             <div>
