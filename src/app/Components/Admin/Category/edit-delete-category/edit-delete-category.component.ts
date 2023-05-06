@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/Models/Category';
 import { CategoryService } from 'src/app/Services/category/category.service';
+import { url } from 'src/app/Services/proxy';
 
 
 
@@ -23,6 +24,7 @@ export class EditDeleteCategoryComponent {
   alert = '';
   loading = false;
   file: any;
+  url = url;
 
   constructor(private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
 

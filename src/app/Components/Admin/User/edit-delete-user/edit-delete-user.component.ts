@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Role } from 'src/app/Models/Role';
 import { User } from 'src/app/Models/User';
 import { CryptoJsService } from 'src/app/Services/crypto-js/crypto-js.service';
+import { url } from 'src/app/Services/proxy';
 import { RoleService } from 'src/app/Services/role/role.service';
 import { UserService } from 'src/app/Services/user/user.service';
 
@@ -25,6 +26,7 @@ export class EditDeleteUserComponent {
   show = '';
   alert = '';
   loading = false;
+  url = url;
 
   constructor(private roleService: RoleService, private route: ActivatedRoute, private cookieService: CookieService, private userService: UserService, private router: Router, private CryptJsService: CryptoJsService) {
     this.updateForm = new FormGroup({

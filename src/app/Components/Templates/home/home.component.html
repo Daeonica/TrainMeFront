@@ -4,7 +4,7 @@
             <h1 class="font-primary text-[50px] text-center">Search your training course</h1>
         </div>
         <div>
-            <div class="grid grid-cols-2 justify-items-center gap-3 md:flex md:gap-8 text-center md:justify-center font-secondary text-white">
+            <div class="grid grid-cols-2 justify-items-center gap-3 md:flex md:gap-8 text-center md:justify-center font-secondary text-white"  *ngIf="categories !=null">
 
                 <a href="category/{{category.id}}" *ngFor="let category of categories" class="no-underline">
                     <div>
@@ -20,7 +20,7 @@
 <section>
     <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <h1 class="text-[48px] text-center font-primary mb-10">Our trainers</h1>
-        <div class="grid grid-cols-2 justify-items-center md:flex gap-10 md:justify-center font-secondary">
+        <div class="grid grid-cols-2 justify-items-center md:flex gap-10 md:justify-center font-secondary" *ngIf="trainers !=null">
             <div *ngFor="let trainer of trainers" class="grid items-center gap-3">
                 <div>
                     <img src="{{trainer_url+trainer.id}}" alt="" class="w-64 h-48">

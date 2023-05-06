@@ -22,7 +22,7 @@ export class ProfileComponent {
   updateChanges = false;
   updateForm: any;
   openWindow = false;
-  messages = [];
+  messages:any  = [];
   updateError = false;
   show = '';
   alert = '';
@@ -103,24 +103,30 @@ export class ProfileComponent {
 
   uploadFile() {
     console.log(this.file);
-    this.loading = true;
-
-    this.userService.uploadFile(this.file).subscribe(response => {
-      if (response.code == 200) {
-        this.alert = 'green';
-        this.router.navigate(['/profile']);
-      } else {
-        this.alert = 'red';
-      }
-      this.show = 'show';
-      this.messages = response.messages;
-      this.loading = false;
-
-    },
-      error => {
-        console.log(error)
+    if (this.file != undefined) {
+      this.loading = true;
+      this.userService.uploadFile(this.file).subscribe(response => {
+        if (response.code == 200) {
+          this.alert = 'green';
+          this.router.navigate(['/profile']);
+        } else {
+          this.alert = 'red';
+        }
+        this.show = 'show';
+        this.messages = response.messages;
         this.loading = false;
-      })
+
+      },
+        error => {
+          console.log(error)
+          this.loading = false;
+        })
+    }else{
+      this.alert = 'red';
+      this.show = 'show';
+      this.messages.push('No file selected');
+    }
+
   }
 
   downloadFile() {
@@ -141,6 +147,7 @@ export class ProfileComponent {
   closeAlert() {
     this.show = '';
     this.alert = '';
+    this.messages = [];
   }
 
 }
