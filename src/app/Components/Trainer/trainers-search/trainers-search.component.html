@@ -1,51 +1,54 @@
-<header class="bg-black-train-me">
-  <div class="max-w-screen-2xl mx-auto pb-3 px-4 sm:px-6 lg:px-8">
-    <h1 class="font-primary text-[50px] text-center text-white">Search your favourite trainer</h1>
-    <div class="flex justify-center">
-      <form class="w-full text-center">
-        <input type="text" name="search" [(ngModel)]="search" (ngModelChange)="query()" placeholder="Search trainer.."
-          class="py-1 w-2/4 px-2 outline-none border rounded-[5px]">
-      </form>
+<div class="h-full">
+  <header class="bg-black-train-me">
+    <div class="max-w-screen-2xl mx-auto pb-3 px-4 sm:px-6 lg:px-8">
+      <h1 class="font-primary text-[50px] text-center text-white">Search your favourite trainer</h1>
+      <div class="flex justify-center">
+        <form class="w-full text-center">
+          <input type="text" name="search" [(ngModel)]="search" (ngModelChange)="query()" placeholder="Search trainer.."
+            class="py-1 w-2/4 px-2 outline-none border rounded-[5px]">
+        </form>
+      </div>
     </div>
-  </div>
-</header>
-<section class="">
-  <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8" *ngIf="!loading">
-    <div
-      class="grid py-3 rounded-sm md:grid-cols-4 bg-gray1-train-me justify-items-center gap-3 overflow-auto max-h-96">
-      <div *ngFor="let trainer of trainersToShow"
-        class="font-secondary bg-white border border-gray-200 p-5 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex items-center gap-5">
-          <div class="flex justify-center mb-4">
-            <img class="rounded-t-lg" src="{{url}}user/image/{{trainer.id}}" class="w-52 h-44 md:w-96"
-              alt="product image" />
+  </header>
+  <section class="">
+    <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8" *ngIf="!loading">
+      <div
+        class="grid py-3 rounded-sm md:grid-cols-4 bg-gray1-train-me justify-items-center gap-3 overflow-auto max-h-96 md:max-h-[700px]">
+        <div *ngFor="let trainer of trainersToShow"
+          class="font-secondary bg-white border border-gray-200 p-5 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex items-center gap-5">
+            <div class="flex justify-center mb-4" *ngIf="trainer.id != null">
+              <img class="rounded-t-lg" src="{{url}}user/image/{{trainer.id}}" class="w-52 h-44 md:w-96"
+                alt="product image" />
+            </div>
+            <div>
+              <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{trainer.name}}
+                {{trainer.surname}}</h5>
+              <h6 class="font-light text-gray-700 max-w-md">{{trainer.description}}</h6>
+            </div>
           </div>
-          <div>
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{trainer.name}}
-              {{trainer.surname}}</h5>
-            <h6 class="font-light text-gray-700 max-w-md">{{trainer.description}}</h6>
-          </div>
-        </div>
 
-        <div class="grid">
-          <!--For trainers show count of courses-->
-          <a href="/trainer/{{trainer.id}}"
-            class="text-white bg-[#FF0000] focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            More info
-          </a>
+          <div class="grid">
+            <!--For trainers show count of courses-->
+            <a href="/trainer/{{trainer.id}}"
+              class="text-white bg-[#FF0000] focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+              More info
+            </a>
+          </div>
+        </div>
+        <div *ngIf="trainersToShow.length == 0" class="md:col-span-2">
+          <h1 class="font-bold text-center uppercase text-xl text-gray-600">Trainer not found</h1>
+        </div>
+        <div *ngIf="loading" class="block">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
         </div>
       </div>
-      <div *ngIf="trainersToShow.length == 0" class="md:col-span-2">
-        <h1 class="font-bold text-center uppercase text-xl text-gray-600">Trainer not found</h1>
-      </div>
-      <div *ngIf="loading" class="block">
-        <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
-      </div>
     </div>
-  </div>
-  <div
-    class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96"
-    *ngIf="loading">
-    <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
-  </div>
-</section>
+    <div
+      class="flex justify-center py-3 rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center px-2 gap-10 overflow-auto max-h-96"
+      *ngIf="loading">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </section>
+
+</div>

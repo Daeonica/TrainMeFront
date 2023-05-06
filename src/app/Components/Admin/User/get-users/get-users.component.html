@@ -1,4 +1,4 @@
-<section class="bg-gray-100">
+<section class="bg-gray-100 h-full">
   <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8 font-secondary" *ngIf="!loading">
     <table class="w-full overflow-hidden rounded-lg table-auto">
       <thead class="text-white bg-red-600">
@@ -11,14 +11,14 @@
           <th class="px-4 py-2">Actions</th>
         </tr>
       </thead>
-      <tbody class="">
+      <tbody class="text-center">
         <tr class="hover:bg-gray-300" *ngFor="let user of users">
-          <td class="px-4 bg-white py-2">{{user.id}}</td>
-          <td class="px-4 bg-white py-2">{{user.name}}</td>
-          <td class="px-4 bg-white py-2">{{user.surname}}</td>
-          <td class="px-4 bg-white py-2">{{user.email}}</td>
-          <td class="px-4 bg-white py-2">{{user.role.name}}</td>
-          <td class="px-4 bg-white py-2">
+          <td *ngIf="user.id != loged_user.id" class="px-4 bg-white py-2">{{user.id}}</td>
+          <td *ngIf="user.id != loged_user.id" class="px-4 bg-white py-2">{{user.name}}</td>
+          <td *ngIf="user.id != loged_user.id" class="px-4 bg-white py-2">{{user.surname}}</td>
+          <td *ngIf="user.id != loged_user.id" class="px-4 bg-white py-2">{{user.email}}</td>
+          <td *ngIf="user.id != loged_user.id" class="px-4 bg-white py-2">{{user.role.name}}</td>
+          <td *ngIf="user.id != loged_user.id" class="px-4 bg-white py-2">
             <button class="px-2 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-700"> <a
                 href="/admin/user/update/{{user.id}}">Edit</a> </button>
         </tr>

@@ -56,14 +56,17 @@ export class EditDeleteCategoryComponent {
 
   onDelete() {
     console.log(this.category);
-    this.categoryService.delete(this.category).subscribe(response => {
-      if (response.code == '200') {
-        this.router.navigate(['/admin/category']);
-      }
-      this.messages = response.messages
-    }, error => {
-      console.log(error)
-    })
+    if (confirm('Are you sure you want to delete this category?')) {
+      this.categoryService.delete(this.category).subscribe(response => {
+        if (response.code == '200') {
+          this.router.navigate(['/admin/category']);
+        }
+        this.messages = response.messages
+      }, error => {
+        console.log(error)
+      })
+    }
+
   }
 
   onUpdate() {

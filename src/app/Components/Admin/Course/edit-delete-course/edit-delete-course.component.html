@@ -1,6 +1,12 @@
 <div class="px-4 mx-auto max-w-screen-2xl py-2 flex justify-center sm:px-6 lg:px-8">
 
   <div>
+    <div class="flex justify-center gap-2" *ngIf="course != null">
+      <img src="{{url}}course/image/{{course.id}}" alt="" class="w-80">
+      <video class="w-80" muted autoplay loop controls>
+        <source src="{{url}}course/video/{{course.id}}" type="video/mp4">
+      </video>
+    </div>
     <form [formGroup]="updateForm" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full">
       <div *ngIf='alert == "green"' class="py-1 px-2 bg-green-200 flex justify-between" role="alert">
         <div *ngFor="let message of messages">{{message}}</div>
@@ -63,7 +69,7 @@
           <div>
             <label for="user-type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User
               Type</label>
-            <select name="user-type" id="user-type" formControlName="role"
+            <select name="user-type" id="user-type" formControlName="category"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required>
               <option value="">Select user type</option>
@@ -104,23 +110,27 @@
     <form action="" class="border-2 p-2 my-2">
       <label for="">Upload course image</label>
       <input type="file" (change)="catchImage($event)" multiple>
-      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg" (click)="uploadImage()">Upload image</button>
+      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg"
+        (click)="uploadImage()">Upload image</button>
     </form>
 
     <form action="" class="border-2 p-2 my-2">
       <label for="">Upload course file</label>
       <input type="file" (change)="catchFile($event)" multiple>
-      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg" (click)="uploadFile()">Upload file</button>
+      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg"
+        (click)="uploadFile()">Upload file</button>
     </form>
 
     <form action="" class="border-2 p-2 my-2">
       <label for="">Upload course video</label>
       <input type="file" (change)="catchVideo($event)" multiple>
-      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg" (click)="uploadVideo()">Upload video</button>
+      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg"
+        (click)="uploadVideo()">Upload video</button>
     </form>
 
     <form action="" class="border-2 p-2 my-2">
-      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg" (click)="downloadFile()">Download</button>
+      <button class=" mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg"
+        (click)="downloadFile()">Download</button>
     </form>
   </div>
 

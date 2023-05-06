@@ -13,18 +13,17 @@ import { url } from 'src/app/Services/proxy';
   styleUrls: ['./search-filter.component.css']
 })
 export class SearchFilterComponent {
-  @Input() categories: any;
-  @Output() categoriesChange: any;
-  courses: any;
+  categories: any = [];
+  courses: any = [];
   max_price: any;
   min_price: any;
-  selectedCategories: any;
+  selectedCategories: any = [];
   loading: boolean = true;
   url: any;
   search_name: any;
 
-  @Input() coursesToShow!: any;
-  @Output() updateArrayCourseToShow = new EventEmitter<any>();
+  @Input() coursesToShow: any = [];
+  @Output() updateArrayCourseToShow = new EventEmitter<[]>();
 
   constructor(private categoryService: CategoryService, private router: Router, private courseService: CourseService, private route: ActivatedRoute, private cookieService: CookieService, private CryptJsService: CryptoJsService) {
     this.min_price = 1;
@@ -78,18 +77,32 @@ export class SearchFilterComponent {
     this.coursesToShow = [];
     console.log(this.selectedCategories);
     for (let i = 0; i < this.courses.length; i++) {
-      if (this.selectedCategories.length == 0) {
-        if ((Number(this.courses[i].price) <= Number(this.max_price)) && (Number(this.courses[i].price) >= Number(this.min_price))) {
-          if (this.search_name != undefined && this.search_name != "") {
-            if (this.courses[i].name.toLowerCase().includes(this.search_name.toLowerCase())) {
-              this.coursesToShow.push(this.courses[i])
-            }
-          } else {
-            this.coursesToShow.push(this.courses[i])
-          }
-        }
-      }
-      else {
+      // if (this.selectedCategories.length == 0) {
+      //   if ((Number(this.courses[i].price) <= Number(this.max_price)) && (Number(this.courses[i].price) >= Number(this.min_price))) {
+      //     if (this.search_name != undefined && this.search_name != "") {
+      //       if (this.courses[i].name.toLowerCase().includes(this.search_name.toLowerCase())) {
+      //         this.coursesToShow.push(this.courses[i])
+      //       }
+      //     } else {
+      //       this.coursesToShow.push(this.courses[i])
+      //     }
+      //   }
+      // }
+      // else {
+      //   for (let j = 0; j < this.selectedCategories.length; j++) {
+      //     if ((this.courses[i].category.id == this.selectedCategories[j].id) && (Number(this.courses[i].price) <= Number(this.max_price)) && (Number(this.courses[i].price) >= Number(this.min_price))) {
+      //       if (this.search_name != undefined && this.search_name != "") {
+      //         if (this.courses[i].name.toLowerCase().includes(this.search_name.toLowerCase())) {
+      //           this.coursesToShow.push(this.courses[i])
+      //         }
+      //       } else {
+      //         this.coursesToShow.push(this.courses[i])
+      //       }
+      //     }
+      //   }
+      // }
+
+      if (this.selectedCategories.length != 0) {
         for (let j = 0; j < this.selectedCategories.length; j++) {
           if ((this.courses[i].category.id == this.selectedCategories[j].id) && (Number(this.courses[i].price) <= Number(this.max_price)) && (Number(this.courses[i].price) >= Number(this.min_price))) {
             if (this.search_name != undefined && this.search_name != "") {
@@ -118,6 +131,7 @@ export class SearchFilterComponent {
         response[i].selected = true;
       }
       this.categories = response;
+      this.selectedCategories = response;
       this.getAllCourses();
 
     })

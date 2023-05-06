@@ -8,6 +8,7 @@ import { Role } from 'src/app/Models/Role';
 import { User } from 'src/app/Models/User';
 import { CategoryService } from 'src/app/Services/category/category.service';
 import { CourseService } from 'src/app/Services/course/course.service';
+import { url } from 'src/app/Services/proxy';
 import { UserService } from 'src/app/Services/user/user.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class EditDeleteCourseComponent {
   fileImage: any;
   fileDocument: any;
   fileVideo: any;
-  img: any;
+  url = url;
   loading: boolean = false;
 
   constructor(private userService: UserService, private courseService: CourseService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService) {
@@ -72,12 +73,15 @@ export class EditDeleteCourseComponent {
   }
 
   onDelete() {
-    this.courseService.delete(this.course).subscribe(response => {
-      if (response.code == '200') {
-        this.router.navigate(['profile']);
-      } else {
-      }
-    });
+    if (confirm('Are you sure you want to delete this course?')) {
+      this.courseService.delete(this.course).subscribe(response => {
+        if (response.code == '200') {
+          this.router.navigate(['profile']);
+        } else {
+        }
+      });
+    }
+
   }
 
 

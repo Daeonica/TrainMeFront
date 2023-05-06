@@ -60,19 +60,21 @@ export class EditDeleteUserComponent {
   }
 
   onDelete() {
-    this.userService.delete(this.user).subscribe(response => {
-      if (response.code == '200') {
-        if (response.user.id == this.CryptJsService.decrypt(this.cookieService.get('user')).id) {
-          this.router.navigate(['/register']);
-        } else {
-          this.router.navigate(['/admin/user']);
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.userService.delete(this.user).subscribe(response => {
+        if (response.code == '200') {
+          if (response.user.id == this.CryptJsService.decrypt(this.cookieService.get('user')).id) {
+            this.router.navigate(['/register']);
+          } else {
+            this.router.navigate(['/admin/user']);
+          }
         }
-      }
-      console.log(response);
-      this.messages = response.messages;
-    }, error => {
-      console.log(error)
-    })
+        console.log(response);
+        this.messages = response.messages;
+      }, error => {
+        console.log(error)
+      })
+    }
   }
 
   onUpdate() {

@@ -11,7 +11,7 @@ import { CryptoJsService } from 'src/app/Services/crypto-js/crypto-js.service';
   styleUrls: ['./purchased-courses.component.css']
 })
 export class PurchasedCoursesComponent {
-  allCourses: any;
+  allCourses: any = [];
   cookie: any;
   user: any;
   loading: boolean = true;

@@ -1,7 +1,8 @@
 <section class="bg-gray-100">
   <div class="px-4 py-10 mx-auto max-w-screen-2xl sm:px-6 lg:px-8 font-secondary" *ngIf="!loading">
-    <button><a routerLink="/admin/category/create">Add new</a></button>
-    <div class="container mx-auto">
+    <a class="bg-blue-500 py-2 px-3 border-2 hover:bg-blue-700 rounded-md"
+      routerLink="/admin/category/create"><button>Add new</button></a>
+    <div class="mt-5 mx-auto">
       <h1 class="mb-4 text-2xl font-bold">Lista de categorias</h1>
       <table class="w-full overflow-hidden rounded-lg table-auto">
         <thead class="text-white bg-red-600">
@@ -26,6 +27,11 @@
                 </button>
               </div>
             </td>
+          </tr>
+          <tr class="hover:bg-gray-300 text-center" *ngIf="categories.length == 0">
+            <th colspan="4">
+              CATEGORIES NOT FOUND
+            </th>
           </tr>
         </tbody>
       </table>

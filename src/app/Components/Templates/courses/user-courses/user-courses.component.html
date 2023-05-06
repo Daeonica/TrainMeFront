@@ -22,7 +22,10 @@
             <div class="flex gap-2 justify-center">
               <button> <a href="/course/update/{{course.id}}">Edit</a> </button>
               <button *ngIf="user.role.key_value == 'trainer'"> <a href="/trainer/students/{{course.id}}">View students</a> </button>
-
+              <div class="flex gap-2 justify-center">
+                <button class="px-2 font-bold text-white bg-yellow-500 rounded hover:bg-yellow-700"> <a href="/course/update/{{course.id}}">Edit</a> </button>
+                <button class="px-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"> <a href="/trainer/students/{{course.id}}">View students</a> </button>
+              </div>
             </div>
         </tr>
       </tbody>

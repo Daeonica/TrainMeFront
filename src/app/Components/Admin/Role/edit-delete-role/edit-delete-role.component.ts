@@ -47,15 +47,18 @@ export class EditDeleteRoleComponent {
   }
 
   onDelete() {
-    this.roleService.delete(this.role).subscribe(response => {
-      if (response.code == '200') {
-        this.router.navigate(['/admin/role']);
-      }
-      console.log(response);
-      this.messages = response.messages;
-    }, error => {
-      console.log(error)
-    })
+    if (confirm('Are you sure you want to delete this role?')) {
+      this.roleService.delete(this.role).subscribe(response => {
+        if (response.code == '200') {
+          this.router.navigate(['/admin/role']);
+        }
+        console.log(response);
+        this.messages = response.messages;
+      }, error => {
+        console.log(error)
+      })
+    }
+
   }
 
   onUpdate() {

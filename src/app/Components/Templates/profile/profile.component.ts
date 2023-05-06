@@ -27,8 +27,7 @@ export class ProfileComponent {
   show = '';
   alert = '';
   file: any;
-  @Input() img = '';
-  @Output() setImage = new EventEmitter<string>();
+  url = url;
   loading = false;
 
   constructor(private userService: UserService, private router: Router, private cookieService: CookieService, private CryptJsService: CryptoJsService) {
@@ -48,7 +47,6 @@ export class ProfileComponent {
 
     }
     this.user = this.CryptJsService.decrypt(this.cookie)
-    this.img = url + 'user/image/' + this.user.id;
 
     this.updateForm = new FormGroup({
       name: new FormControl(this.user.name),
@@ -71,7 +69,6 @@ export class ProfileComponent {
         this.cookieService.set("user", this.CryptJsService.encrypt(response.user));
         this.user = response.user;
         this.alert = 'green';
-        this.setImage.emit(url + 'user/image/' + this.user.id)
       } else {
         this.alert = 'red';
       }

@@ -9,7 +9,7 @@ import { RoleService } from 'src/app/Services/role/role.service';
   styleUrls: ['./get-roles.component.css']
 })
 export class GetRolesComponent {
-  roles: any;
+  roles: any = [];
   loading:boolean = true;
   constructor(private cryptoJsService: CryptoJsService, private roleService: RoleService) {
 

@@ -8,10 +8,10 @@ import { CategoryService } from 'src/app/Services/category/category.service';
   styleUrls: ['./get-categories.component.css']
 })
 export class GetCategoriesComponent {
-  categories: any;
+  categories: any = [];
   loading:boolean = true;
   constructor(private cryptoJsService: CryptoJsService, private categoryService: CategoryService) {
-    
+
   }
 
   ngOnInit() {

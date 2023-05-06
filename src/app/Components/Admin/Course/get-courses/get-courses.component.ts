@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./get-courses.component.css']
 })
 export class GetCoursesComponent {
-  allCourses: any;
+  allCourses: any = [];
   cookie: any;
   user:any;
   loading: boolean = true;
