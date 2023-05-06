@@ -5,7 +5,7 @@
         </div>
         <div>
             <div class="grid grid-cols-2 justify-items-center gap-3 md:flex md:gap-8 text-center md:justify-center font-secondary text-white">
-                
+
                 <a href="{{url+'category/'+category.id}}" *ngFor="let category of categories" class="no-underline">
                     <div>
                         <img src="{{category_url+category.id}}" alt="" class="w-36 h-32">
@@ -124,9 +124,11 @@
             <br>
             <br>
             <div>
+              <a href="/register">
                 <button class="bg-red-train-me border-white rounded-[5px] py-3 px-12 border-[2px] text-white">
-                    Create trainer account
-                </button>
+                  Create trainer account
+              </button>
+              </a>
             </div>
         </div>
     </div>

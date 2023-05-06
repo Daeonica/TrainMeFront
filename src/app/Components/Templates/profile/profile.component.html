@@ -1,25 +1,25 @@
-<div class="px-4 py-10 mx-auto max-w-screen-2xl flex justify-center sm:px-6 lg:px-8 font-secondary">
-  <div class="w-full bg-white max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8 rounded-md shadow-lg ">
-    <div class="md:flex justify-around my-5">
-      <div class="nav-item" *ngIf="user.role.key_value == 'admin'">
+<div class="px-4 pt-5 pb-10 mx-auto max-w-screen-2xl flex justify-center sm:px-6 lg:px-8 font-secondary">
+  <div class="w-full bg-white max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8 rounded-md shadow-2xl ">
+    <div class="md:flex justify-around my-5 py-2 rounded-md text-white font-semibold text-lg bg-red-train-me">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'admin'">
         <a class="nav-link" routerLink="/admin/course">Courses</a>
       </div>
-      <div class="nav-item" *ngIf="user.role.key_value == 'customer'">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'customer'">
         <a class="nav-link"routerLink="/customer/purchased-courses/{{user.id}}">Purchased courses</a>
       </div>
-      <div class="nav-item" *ngIf="user.role.key_value == 'admin'">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'admin'">
         <a class="nav-link" routerLink="/admin/category">Categories</a>
       </div>
-      <div class="nav-item" *ngIf="user.role.key_value == 'admin'">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'admin'">
         <a class="nav-link" routerLink="/admin/role">Roles</a>
       </div>
-      <div class="nav-item" *ngIf="user.role.key_value == 'admin'">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'admin'">
         <a class="nav-link" routerLink="/admin/user">Users</a>
       </div>
-      <div class="nav-item" *ngIf="user.role.key_value == 'trainer'">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'trainer'">
         <a class="nav-link" routerLink="/user/courses">My courses</a>
       </div>
-      <div class="nav-item" *ngIf="user.role.key_value == 'trainer'">
+      <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'trainer'">
         <a class="nav-link" routerLink="/course/trainer/create">Create course</a>
       </div>
     </div>

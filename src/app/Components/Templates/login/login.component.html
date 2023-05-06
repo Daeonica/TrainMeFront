@@ -1,58 +1,70 @@
-<div class="px-4 mx-auto max-w-screen-2xl h-full py-2 flex justify-center sm:px-6 lg:px-8">
+<div class="px-4 mx-auto max-w-screen-2xl border-t h-full py-2 flex justify-center sm:px-6 lg:px-8">
 
-  <form [formGroup]="loginForm" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full" action="#">
-    <div *ngIf='alert == "green"' class="py-1 px-2 bg-green-200 flex justify-between" role="alert">
-      <div *ngFor="let message of messages">{{message}}</div>
-      <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
-        (click)="closeAlert()">x</button>
-    </div>
-    <div *ngIf='alert == "red"' class="py-1 px-2 bg-red-200 flex justify-between" role="alert">
-      <div *ngFor="let message of messages">{{message}}</div>
-      <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
-        (click)="closeAlert()">x</button>
-    </div>
-    <div *ngIf="!loading">
-      <div class="grid grid-cols-1 gap-4">
-        <div>
-          <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-          <input type="email" formControlName="email" name="country" id="country" required
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Email" required="">
-          <div class="text-red-400 text-sm font-thin" *ngIf="loginForm.get('email').touched && (loginForm.get('email').hasError('required') || loginForm.get('email').hasError('email'))">
-            <div *ngIf="loginForm.get('email').hasError('required')">
-              Email is required.
+  <div class="w-full">
+    <h1 class="py-5 flex justify-center">
+      <span class="text-5xl font-bold text-gray-900 dark:text-white uppercase">Sign In</span>
+    </h1>
+    <div class="justify-center flex w-full">
+      <form [formGroup]="loginForm" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-xl w-full shadow-xl"
+        action="#">
+        <div *ngIf='alert == "green"' class="py-1 px-2 bg-green-200 flex justify-between" role="alert">
+          <div *ngFor="let message of messages">{{message}}</div>
+          <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
+            (click)="closeAlert()">x</button>
+        </div>
+        <div *ngIf='alert == "red"' class="py-1 px-2 bg-red-200 flex justify-between" role="alert">
+          <div *ngFor="let message of messages">{{message}}</div>
+          <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
+            (click)="closeAlert()">x</button>
+        </div>
+        <div *ngIf="!loading">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+              <input type="email" formControlName="email" name="country" id="country" required
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Email" required="">
+              <div class="text-red-400 text-sm font-thin"
+                *ngIf="loginForm.get('email').touched && (loginForm.get('email').hasError('required') || loginForm.get('email').hasError('email'))">
+                <div *ngIf="loginForm.get('email').hasError('required')">
+                  Email is required.
+                </div>
+                <div *ngIf="loginForm.get('email').hasError('email')">
+                  Email must be a valid email address.
+                </div>
+              </div>
             </div>
-            <div *ngIf="loginForm.get('email').hasError('email')">
-              Email must be a valid email address.
+            <div>
+              <label for="password"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+              <input type="password" formControlName="password" name="password" id="password" placeholder="••••••••"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required="">
             </div>
+
           </div>
-        </div>
-        <div>
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-          <input type="password" formControlName="password" name="password" id="password" placeholder="••••••••"
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            required="">
+          <div class="w-full">
+            <button [disabled]="loginForm.invalid"
+              class="w-full mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
+              type="submit" (click)="onSubmit()">
+              Sign In
+            </button>
+          </div>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            Already not registered? <a href="/register"
+              class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign Up</a>
+          </p>
         </div>
 
-      </div>
-      <div class="w-full">
-        <button [disabled]="loginForm.invalid"
-          class="w-full mt-5 px-4 py-2 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-[25.7px]"
-          type="submit" (click)="onSubmit()">
-          Sign In
-        </button>
-      </div>
-      <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-        Already not registered? <a href="/register"
-          class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign Up</a>
-      </p>
+        <div
+          class="flex justify-center gap-10 px-2 py-3 overflow-auto rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center max-h-96"
+          *ngIf="loading">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+        </div>
+
+      </form>
     </div>
 
-    <div
-      class="flex justify-center gap-10 px-2 py-3 overflow-auto rounded-sm md:grid-cols-2 bg-gray1-train-me justify-items-center max-h-96"
-      *ngIf="loading">
-      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
-    </div>
+  </div>
 
-  </form>
 </div>

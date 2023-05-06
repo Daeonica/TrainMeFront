@@ -66,7 +66,7 @@ export class RegisterComponent {
       if (response.code == '200') {
         console.log(response);
         document.cookie = 'user=' + this.CryptoJsService.encrypt(response.user);
-        this.router.navigate(['profile']);
+        this.router.navigate(['/']);
         this.alert = 'green';
       } else {
         this.alert = 'red';

@@ -43,7 +43,7 @@ export class LoginComponent {
       if (response.code == '200') {
         document.cookie = 'user=' + this.CryptoJsService.encrypt(response.user);
         this.alert = 'green';
-        this.router.navigate(['profile']);
+        this.router.navigate(['/']);
       }else{
         this.alert = 'red';
       }
