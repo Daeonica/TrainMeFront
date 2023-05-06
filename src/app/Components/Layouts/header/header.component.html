@@ -1,5 +1,5 @@
 <nav class="bg-white-train-me">
-  <div class="max-w-screen-2xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center">
       <div><a href="/">
           <img src="../../../../assets/img/logo.png" alt="" class="-mb-5 md:-ml-0 -ml-8" />
@@ -43,7 +43,7 @@
         </div>
         <div *ngIf="user != null" >
           <a href="/profile">
-            <img src="{{url}}user/image/{{user.id}}" class="w-10 w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
+            <img src="{{url}}user/image/{{user.id}}" class="w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
           </a>
         </div>
       </div>
@@ -53,7 +53,7 @@
 
 
     </div>
-    <div *ngIf="menuVisible" class="grid justify-center xl:hidden">
+    <div *ngIf="menuVisible" class="grid gap-3 mb-5 text-2xl justify-center xl:hidden">
       <div>
         <a href="/courses/search"
           class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
@@ -87,6 +87,11 @@
         <a href="/login">
           <button class="py-1 mt-2 px-2 border-[#FF0000] border-[2px] rounded-[35px]">Sign
             In</button>
+        </a>
+      </div>
+      <div *ngIf="user != null" >
+        <a href="/profile">
+          <img src="{{url}}user/image/{{user.id}}" class="w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
         </a>
       </div>
     </div>
