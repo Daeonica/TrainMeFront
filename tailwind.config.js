@@ -28,8 +28,9 @@ module.exports = {
         'dark-train-me': '#424147',
       },
       fontFamily: {
-        'primary': 'Quicksand',
-        'serif-train-me': 'Arimo',
+        'primary': 'Lobster',
+        'secondary': 'Varela Round',
+        'serif-train-me': 'Varela Round',
       },
       screens: {
       }

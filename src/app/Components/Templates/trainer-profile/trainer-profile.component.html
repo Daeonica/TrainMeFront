@@ -4,13 +4,13 @@
     <div *ngIf="!loading">
       <section class="">
         <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6">
-          <div class="grid grid-cols-2 gap-2 px-5 py-8 bg-black-train-me text-white md:grid-cols-5">
+          <div class="flex gap-2 px-5 py-8 bg-black-train-me text-white md:grid-cols-5">
             <div class="">
-              <img class="mr-4 h-165 w-165" src="{{url}}user/image/{{trainer.id}}" alt="Foto de perfil">
+              <img class="w-64" src="{{url}}user/image/{{trainer.id}}" alt="Foto de perfil">
             </div>
 
             <div class="">
-              <div class="grid items-center h-full grid-rows-2">
+              <div class="items-center h-full">
                 <div class="p-2">
                   <h2 class="text-[21px]">{{trainer.name}} {{trainer.surname}}</h2>
                   <p class="text-[20px]">{{trainer.email}}</p>

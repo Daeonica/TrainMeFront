@@ -8,36 +8,36 @@
       <div class="hidden xl:flex font-secondary gap-10 items-center text-[19px]">
         <div>
           <a href="/courses/search"
-            class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+            class="text-black hover:text-black hover:no-underline border-b-2 border-transparent border hover:border-b-[#FF0000]">
             Courses
           </a>
         </div>
         <div>
           <a href="/trainers/search"
-            class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+            class="text-black hover:text-black hover:no-underline border-b-2 border-transparent border hover:border-b-[#FF0000]">
             Trainers
           </a>
         </div>
         <div>
           <a href="/categories/search"
-            class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+            class="text-black hover:text-black hover:no-underline border-b-2 border-transparent border hover:border-b-[#FF0000]">
             Categories
           </a>
         </div>
         <div>
           <a href="/about"
-            class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+            class="text-black hover:text-black hover:no-underline border-b-2 border-transparent border hover:border-b-[#FF0000]">
             About
           </a>
         </div>
         <div *ngIf="user == null">
           <a href="/register">
-            <button class="py-[13px] px-[48px] bg-red-train-me text-white rounded-[35px]">Sign Up</button>
+            <button class="py-[13px] px-[48px] bg-red-train-me text-white rounded-[35px] hover:bg-white hover:text-black border-[2px] border-transparent hover:border-[#FF0000]">Sign Up</button>
           </a>
         </div>
         <div *ngIf="user == null">
           <a href="/login">
-            <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[35px]">Sign
+            <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[35px] hover:bg-[#FF0000] hover:text-white">Sign
               In</button>
           </a>
         </div>
@@ -53,7 +53,7 @@
 
 
     </div>
-    <div *ngIf="menuVisible" class="grid justify-center md:hidden">
+    <div *ngIf="menuVisible" class="grid justify-center xl:hidden">
       <div>
         <a href="/courses/search"
           class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
