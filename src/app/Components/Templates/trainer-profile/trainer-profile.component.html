@@ -42,7 +42,10 @@
       <section>
         <div class="px-8 py-8 mx-auto space-y-2 sm:py-4 sm:space-y-0 sm:space-x-6 ">
           <div class="py-8 px-5 border bg-white border-gray-100 rounded-[5px]">
-            <h3 class="text-[21px] border-b">Cursos</h3>
+            <div class="flex gap-2 border-b items-center">
+              <h3 class="text-[21px] ">Cursos</h3>
+              <span class="font-extralight">{{courses.length}}</span>
+            </div>
             <div class="pt-4 font-bold overflow-auto max-h-xl" *ngIf="courses != null">
 
               <div class="justify-between items-center px-8 py-8 mb-5 md:flex bg-gray-50"

@@ -6,7 +6,7 @@
         <div>
             <div class="grid grid-cols-2 justify-items-center gap-3 md:flex md:gap-8 text-center md:justify-center font-secondary text-white">
 
-                <a href="{{url+'category/'+category.id}}" *ngFor="let category of categories" class="no-underline">
+                <a href="category/{{category.id}}" *ngFor="let category of categories" class="no-underline">
                     <div>
                         <img src="{{category_url+category.id}}" alt="" class="w-36 h-32">
                         <h4 class="mt-2 uppercase">{{category.name}}</h4>

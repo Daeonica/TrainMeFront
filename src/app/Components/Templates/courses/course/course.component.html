@@ -3,7 +3,7 @@
     <div class="p-5 rounded-sm bg-black-train-me md:grid-cols-2 grid gap-3 items-content-center">
       <div class="flex gap-5">
         <div>
-          <img src="{{url}}course/image/{{course.id}}" class="w-64 min-w-md" alt="">
+          <img  *ngIf="course != null" src="{{url}}course/image/{{course.id}}" class="w-64 min-w-md" alt="">
         </div>
         <div class="text-white grid ">
           <div>
@@ -38,7 +38,7 @@
       </div>
       <div class="flex gap-5 justify-end">
         <div>
-          <img src="{{url}}user/image/{{course.user.id}}" class="w-64 min-w-md" alt="">
+          <img src="{{url}}user/image/{{course.user.id}}"  *ngIf="course != null" class="w-64 min-w-md" alt="">
         </div>
         <div class="text-white grid ">
           <div>

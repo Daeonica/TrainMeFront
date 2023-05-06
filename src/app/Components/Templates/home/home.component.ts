@@ -9,15 +9,15 @@ import { UserService } from 'src/app/Services/user/user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  categories: any;
-  trainers: any;
+  categories: any = [];
+  trainers: any = [];
   category_url: any;
   trainer_url: any;
   url: any
 
   constructor(private categoryService: CategoryService, private userService: UserService) {
-    this.category_url =   url+'category/image/'
-    this.trainer_url =   url+'user/image/'
+    this.category_url = url + 'category/image/'
+    this.trainer_url = url + 'user/image/'
     this.url = url
   }
 

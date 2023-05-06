@@ -15,7 +15,6 @@ export class CategoryProfileComponent {
   url = url;
   id: any;
   loading = true;
-  count_courses : any
 
   constructor(private categoryService: CategoryService, private courseService:CourseService, private route: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -24,9 +23,6 @@ export class CategoryProfileComponent {
   ngOnInit(): void {
     this.getCategory();
     this.getCategoryCourses();
-    this.courseService.categoryCoursesCount(this.id).subscribe((res: any) => {
-      this.count_courses = res;
-    })
   }
 
   getCategory() {
