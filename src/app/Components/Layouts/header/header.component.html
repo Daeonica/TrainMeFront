@@ -32,18 +32,22 @@
         </div>
         <div *ngIf="user == null">
           <a href="/register">
-            <button class="py-[13px] px-[48px] bg-red-train-me text-white rounded-[35px] hover:bg-white hover:text-black border-[2px] border-transparent hover:border-[#FF0000]">Sign Up</button>
+            <button
+              class="py-[13px] px-[48px] bg-red-train-me text-white rounded-[35px] hover:bg-white hover:text-black border-[2px] border-transparent hover:border-[#FF0000]">Sign
+              Up</button>
           </a>
         </div>
         <div *ngIf="user == null">
           <a href="/login">
-            <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[35px] hover:bg-[#FF0000] hover:text-white">Sign
+            <button
+              class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[35px] hover:bg-[#FF0000] hover:text-white">Sign
               In</button>
           </a>
         </div>
-        <div *ngIf="user != null" >
+        <div *ngIf="user != null">
           <a href="/profile">
-            <img src="{{url}}user/image/{{user.id}}" class="w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
+            <img src="{{url}}user/image/{{user.id}}"
+              class="w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
           </a>
         </div>
       </div>
@@ -89,9 +93,10 @@
             In</button>
         </a>
       </div>
-      <div *ngIf="user != null" >
-        <a href="/profile">
-          <img src="{{url}}user/image/{{user.id}}" class="w-10 rounded-full border-black border-2 hover:border-5 hover:border-red-600" alt="">
+      <div *ngIf="user != null">
+        <a href="/profile"
+          class="text-black hover:text-black hover:no-underline border-b-3 border-b-transparent hover:border-b-[#FF0000]">
+          Profile
         </a>
       </div>
     </div>
