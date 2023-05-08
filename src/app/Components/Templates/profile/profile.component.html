@@ -1,6 +1,6 @@
 <div class="px-4 pt-5 pb-10 mx-auto max-w-screen-2xl flex justify-center sm:px-6 lg:px-8 font-secondary" *ngIf="user != null">
   <div class="w-full bg-white max-w-screen-xl mx-auto py-8 px-4 sm:px-6 lg:px-8 rounded-md shadow-2xl ">
-    <div class="md:flex justify-around my-5 py-2 rounded-md text-white font-semibold text-lg bg-red-train-me">
+    <div class="md:flex justify-around my-5 px-2 py-2 rounded-md text-white font-semibold text-lg bg-red-train-me">
       <div class="nav-item hover:text-gray-200" *ngIf="user.role.key_value == 'admin'">
         <a class="nav-link" routerLink="/admin/course">Courses</a>
       </div>
