@@ -17,13 +17,13 @@
               {{course.price}} €
             </h4>
           </div>
-          <div>
+          <div >
             <button *ngIf="user == null"
               class="w-full px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-4xl"
               type="submit" routerLink="/login">
               Buy!
             </button>
-            <button *ngIf="user != null && !purchased"
+            <button *ngIf="user != null && !purchased && user.role.key_value != 'trainer'">
               class="w-full px-2 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-4xl"
               type="submit" (click)="buy()">
               Buy!

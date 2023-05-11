@@ -1,78 +1,90 @@
 <div class="px-4 mx-auto max-w-screen-2xl h-full py-2 flex justify-center sm:px-6 lg:px-8">
-
-  <form [formGroup]="formCreateCourse" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full">
-
-    <div>
-      <div class="grid grid-cols-1 gap-4">
-        <div>
-          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-          <input type="text" formControlName="name" name="name" id="name" required
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Name" required="">
-          <div class="text-red-400 text-sm font-thin"
-            *ngIf="formCreateCourse.get('name').touched && formCreateCourse.get('name').hasError('required')">
-            <div *ngIf="formCreateCourse.get('name').hasError('required')">
-              Name is required.
-            </div>
-
-          </div>
-        </div>
-        <div>
-          <label for="description"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-          <input type="text" formControlName="description" name="description" id="description" required
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Description" required="">
-          <div class="text-red-400 text-sm font-thin"
-            *ngIf="formCreateCourse.get('description').touched && formCreateCourse.get('description').hasError('required')">
-            <div *ngIf="formCreateCourse.get('description').hasError('required')">
-              Descriptiion is required.
-            </div>
-
-          </div>
-        </div>
-        <div>
-          <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-          <input type="number" max="100" formControlName="price" name="price" id="price" required
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Price" required="">
-          <div class="text-red-400 text-sm font-thin"
-            *ngIf="formCreateCourse.get('price').touched && formCreateCourse.get('price').hasError('required')">
-            <div *ngIf="formCreateCourse.get('price').hasError('required')">
-              Price is required.
-            </div>
-
-          </div>
-        </div>
-
-        <div>
-          <label for="user-type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-          <select name="user-type" id="user-type" formControlName="category"
-            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            required>
-            <option value="">Select category</option>
-            <option *ngFor="let category of categories" value="{{category.id}}">{{ category.name }}</option>
-          </select>
-          <div class="text-red-400 text-sm font-thin"
-            *ngIf="formCreateCourse.get('category').touched && formCreateCourse.get('category').hasError('required')">
-            <div *ngIf="formCreateCourse.get('category').hasError('required')">
-              Category is required.
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="w-full">
-        <button [disabled]="formCreateCourse.invalid"
-          class="w-full mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg"
-          type="submit" (click)="createCourse()">
-          Create
-        </button>
-      </div>
+  <div class="w-full">
+    <div class="flex justify-center">
+      <h1 class="uppercase font-bold my-5 text-3xl">Create course</h1>
 
     </div>
+    <div class="flex justify-center">
+      <form [formGroup]="formCreateCourse" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full">
 
-  </form>
+        <div>
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+              <input type="text" formControlName="name" name="name" id="name" required
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Name" required="">
+              <div class="text-red-400 text-sm font-thin"
+                *ngIf="formCreateCourse.get('name').touched && formCreateCourse.get('name').hasError('required')">
+                <div *ngIf="formCreateCourse.get('name').hasError('required')">
+                  Name is required.
+                </div>
+
+              </div>
+            </div>
+            <div>
+              <label for="description"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+              <input type="text" formControlName="description" name="description" id="description" required
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Description" required="">
+              <div class="text-red-400 text-sm font-thin"
+                *ngIf="formCreateCourse.get('description').touched && formCreateCourse.get('description').hasError('required')">
+                <div *ngIf="formCreateCourse.get('description').hasError('required')">
+                  Descriptiion is required.
+                </div>
+
+              </div>
+            </div>
+            <div>
+              <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+              <input type="number" max="100" formControlName="price" name="price" id="price" required
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Price" required="">
+              <div class="text-red-400 text-sm font-thin" *ngIf="formCreateCourse.get('price').touched && (formCreateCourse.get('price').hasError('required') || formCreateCourse.get('price').hasError('max'))">
+                <div *ngIf="formCreateCourse.get('price').hasError('required')">
+                  Price is required.
+                </div>
+                <div *ngIf="formCreateCourse.get('price').hasError('max')">
+                  Max price 100€.
+                </div>
+
+              </div>
+            </div>
+
+            <div>
+              <label for="user-type"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+              <select name="user-type" id="user-type" formControlName="category"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required>
+                <option value="">Select category</option>
+                <option *ngFor="let category of categories" value="{{category.id}}">{{ category.name }}</option>
+              </select>
+              <div class="text-red-400 text-sm font-thin"
+                *ngIf="formCreateCourse.get('category').touched && formCreateCourse.get('category').hasError('required')">
+                <div *ngIf="formCreateCourse.get('category').hasError('required')">
+                  Category is required.
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="w-full">
+            <button [disabled]="formCreateCourse.invalid"
+              class="w-full mt-5 px-1 py-1 font-bold text-white rounded bg-red-train-me hover:bg-red-700 text-lg"
+              type="submit" (click)="createCourse()">
+              Create
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+
+
+  </div>
 
 
 </div>

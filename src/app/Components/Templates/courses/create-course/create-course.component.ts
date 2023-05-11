@@ -39,7 +39,7 @@ export class CreateCourseComponent {
     this.formCreateCourse = new FormGroup({
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.max(100)]),
       category: new FormControl('', [Validators.required])
     })
   }
