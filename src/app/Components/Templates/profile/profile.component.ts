@@ -30,6 +30,7 @@ export class ProfileComponent {
   url = url;
   loading = false;
   srcImage = '';
+  loadingImg = false;
 
   constructor(private userService: UserService, private router: Router, private cookieService: CookieService, private CryptJsService: CryptoJsService) {
     this.cookie = this.cookieService.get("user");
@@ -64,9 +65,16 @@ export class ProfileComponent {
   }
 
   loadProfileImg() {
-
+    this.loadingImg = true;
+    let i = 0;
+    let interval = setInterval(() => {
+      i++;
+      if (i == 1) {
         this.srcImage = this.url + 'user/image/' + this.user.id + '?'+Date.now();
-
+        this.loadingImg = false;
+        clearInterval(interval);
+      }
+    }, 1000);
 
   }
 
