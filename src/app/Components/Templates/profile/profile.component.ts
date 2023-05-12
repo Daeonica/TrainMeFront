@@ -22,13 +22,14 @@ export class ProfileComponent {
   updateChanges = false;
   updateForm: any;
   openWindow = false;
-  messages:any  = [];
+  messages: any = [];
   updateError = false;
   show = '';
   alert = '';
   file: any;
   url = url;
   loading = false;
+  srcImage = '';
 
   constructor(private userService: UserService, private router: Router, private cookieService: CookieService, private CryptJsService: CryptoJsService) {
     this.cookie = this.cookieService.get("user");
@@ -56,8 +57,18 @@ export class ProfileComponent {
       confirmPassword: new FormControl('')
     })
 
+    this.loadProfileImg()
+
+
+
   }
 
+  loadProfileImg() {
+
+        this.srcImage = this.url + 'user/image/' + this.user.id + '?'+Date.now();
+
+
+  }
 
   onUpdate() {
     const data = this.updateForm.value;
@@ -108,7 +119,7 @@ export class ProfileComponent {
       this.userService.uploadFile(this.file).subscribe(response => {
         if (response.code == 200) {
           this.alert = 'green';
-          this.router.navigate(['/profile']);
+          this.loadProfileImg();
         } else {
           this.alert = 'red';
         }
@@ -121,7 +132,7 @@ export class ProfileComponent {
           console.log(error)
           this.loading = false;
         })
-    }else{
+    } else {
       this.alert = 'red';
       this.show = 'show';
       this.messages.push('No file selected');
