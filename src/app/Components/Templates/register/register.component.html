@@ -1,19 +1,19 @@
-<div class="px-4 mx-auto h-full max-w-screen-2xl border-t flex justify-center sm:px-6 py-2 lg:px-8">
+<div class="flex justify-center h-full px-4 py-2 mx-auto border-t max-w-screen-2xl sm:px-6 lg:px-8">
 
 
   <div class="w-full">
-    <h1 class="py-5 flex justify-center">
-      <span class="text-5xl font-bold text-gray-900 dark:text-white uppercase">Sign Up</span>
+    <h1 class="flex justify-center py-5">
+      <span class="text-5xl font-bold text-gray-900 uppercase dark:text-white">Sign Up</span>
     </h1>
     <div class="flex justify-center w-full">
-      <form [formGroup]="registerForm" class="space-y-4 h-fit border p-5 rounded-sm md:space-y-6 shadow-xl max-w-lg w-full"
+      <form [formGroup]="registerForm" class="w-full max-w-lg p-5 space-y-4 border rounded-sm shadow-xl h-fit md:space-y-6"
         action="#">
-        <div *ngIf='alert == "green"' class="py-1 px-2 bg-green-200 flex justify-between" role="alert">
+        <div *ngIf='alert == "green"' class="flex justify-between px-2 py-1 bg-green-200" role="alert">
           <div *ngFor="let message of messages">{{message}}</div>
           <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
             (click)="closeAlert()">x</button>
         </div>
-        <div *ngIf='alert == "red"' class="py-1 px-2 bg-red-200 flex justify-between" role="alert">
+        <div *ngIf='alert == "red"' class="flex justify-between px-2 py-1 bg-red-200" role="alert">
           <div *ngFor="let message of messages">{{message}}</div>
           <button type="button" class="font-bold" data-bs-dismiss="alert" aria-label="Close"
             (click)="closeAlert()">x</button>
@@ -25,7 +25,7 @@
               <input type="text" formControlName="name" name="name" id="name"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="John" required="">
-              <div class="text-red-400 text-sm font-thin"
+              <div class="text-sm font-thin text-red-400"
                 *ngIf="registerForm.get('name').touched && registerForm.get('name').hasError('required')">
                 <div *ngIf="registerForm.get('name').hasError('required')">
                   Name is required.
@@ -37,7 +37,7 @@
               <input type="text" name="lastname" id="lastname" formControlName="surname"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Surname" required="">
-              <div class="text-red-400 text-sm font-thin"
+              <div class="text-sm font-thin text-red-400"
                 *ngIf="registerForm.get('surname').touched && registerForm.get('surname').hasError('required')">
                 <div *ngIf="registerForm.get('surname').hasError('required')">
                   Surname is required.
@@ -51,7 +51,7 @@
               <input type="email" formControlName="email" name="country" id="country"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="United States" required="">
-              <div class="text-red-400 text-sm font-thin"
+              <div class="text-sm font-thin text-red-400"
                 *ngIf="registerForm.get('email').touched && (registerForm.get('email').hasError('required') || registerForm.get('email').hasError('email'))">
                 <div *ngIf="registerForm.get('email').hasError('required')">
                   Email is required.
@@ -70,7 +70,7 @@
                 <option value="">Select user type</option>
                 <option *ngFor="let role of roles" value="{{role.id}}">{{ role.name }}</option>
               </select>
-              <div class="text-red-400 text-sm font-thin"
+              <div class="text-sm font-thin text-red-400"
                 *ngIf="registerForm.get('role').touched && registerForm.get('role').hasError('required')">
                 <div *ngIf="registerForm.get('role').hasError('required')">
                   Role is required.
@@ -85,7 +85,7 @@
               <input type="password" formControlName="password" name="password" id="password" placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required="">
-              <div class="text-red-400 text-sm font-thin"
+              <div class="text-sm font-thin text-red-400"
                 *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')">
                 <div *ngIf="registerForm.get('password').hasError('required')">
                   Password is required.
@@ -99,7 +99,7 @@
                 placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required="">
-              <div class="text-red-400 text-sm font-thin"
+              <div class="text-sm font-thin text-red-400"
                 *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').hasError('required')">
                 <div *ngIf="registerForm.get('confirmPassword').hasError('required')">
                   Password confirmation is required.

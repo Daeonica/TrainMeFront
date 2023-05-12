@@ -8,7 +8,7 @@ import { CustomerSupportService } from 'src/app/Services/customer-support/custom
 @Component({
   selector: 'app-customer-support',
   templateUrl: './customer-support.component.html',
-  styleUrls: ['./customer-support.component.css']
+  styleUrls: ['./customer-support.component.css'] 
 })
 export class CustomerSupportComponent {
   nameOfComponent = 'Customer Support';
