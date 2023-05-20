@@ -11,8 +11,9 @@
 </header>
 <section class="">
   <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-    <div class="md:flex md:justify-center rounded-sm gap-5 mb-5 border md:border-0">
-      <div class="md:border p-3" *ngIf="categories.length != 0">
+    <!-- INICIO Filtro de búsqeda -->
+    <div class="md:float-left  mr-5 my-5">
+      <div class="border rounded-sm p-3 mb-5" *ngIf="categories.length != 0">
         <h4 class="text-lg font-semibold text-red-train-me">Category</h4>
         <div *ngFor="let category of categories">
           <div class="flex items-center gap-1 font-medium">
@@ -26,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="md:border p-3">
+      <div class="border rounded-sm p-3">
         <h4 class="text-lg font-semibold text-red-train-me">Price</h4>
         <div>
           <input type="range" id="range" min="0" class="h-1 w-full" max="100" [(ngModel)]="max_price"
@@ -46,10 +47,13 @@
         </div>
       </div>
     </div>
-    <div class="grid py-3 rounded-sm md:grid-cols-2 lg:grid-cols-4 bg-gray1-train-me justify-items-center px-2 gap-5"
+    <!-- FIN Filtro de búsqeda -->
+    <!-- INICIO Contenido que se muestra -->
+    <div>
+      <div class="grid py-3 rounded-sm md:grid-cols-2 lg:grid-cols-3 bg-gray1-train-me justify-items-center px-2 gap-5 overflow-y-auto max-h-[600px]"
       *ngIf="!loading && coursesToShow.length != 0">
       <div *ngFor="let course of coursesToShow"
-        class="font-secondary bg-white border border-gray-200 rounded-lg w-80 shadow dark:bg-gray-800 dark:border-gray-700">
+        class="font-secondary bg-white border border-gray-200 rounded-lg w-50 lg:w-80 shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="flex justify-center mb-4" *ngIf="course.id != null">
           <img class="rounded-t-lg h-48 w-full object-cover" src="{{url}}course/image/{{course.id}}"
             alt="product image" />
@@ -99,5 +103,8 @@
       *ngIf="loading">
       <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
     </div>
+    </div>
+    <!-- FIN Contenido que se muestra -->
+    
   </div>
 </section>
