@@ -8,7 +8,7 @@
 
                 <a href="category/{{category.id}}" *ngFor="let category of categories" class="no-underline">
                     <div>
-                        <img src="{{category_url+category.id}}" alt="" class="w-36 h-32">
+                        <img src="{{category_url+category.id}}" alt="" class="w-36 object-cover h-32">
                         <h4 class="mt-2 uppercase">{{category.name}}</h4>
                     </div>
                 </a>
@@ -23,7 +23,7 @@
         <div class="grid grid-cols-2 justify-items-center md:flex gap-10 md:justify-center font-secondary" *ngIf="trainers !=null">
             <div *ngFor="let trainer of trainers" class="grid items-center gap-3">
                 <div>
-                    <img src="{{trainer_url+trainer.id}}" alt="" class="w-64 h-48">
+                    <img src="{{trainer_url+trainer.id}}" alt="" class="w-64 h-48 object-cover">
                 </div>
                 <p class="text-[#730000] text-[12px]">Personal trainer</p>
                 <p>{{trainer.name+' '+trainer.surname}}</p>
@@ -32,49 +32,6 @@
                 <button class="w-full py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">More info</button>
                </a>
             </div>
-            <!-- <div class="grid items-center">
-                <div>
-                    <img src="img/IMAGE (4).png" alt="">
-                </div>
-                <p class="text-[#730000] text-[12px]">Personal trainer</p>
-                <p>Raúl De Vena</p>
-                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
-                <button class=" py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
-                    In</button>
-            </div>
-            <div class="grid items-center">
-
-                <div>
-                    <img src="img/IMAGE (5).png" alt="">
-                </div>
-                <p class="text-[#730000] text-[12px]">Personal trainer</p>
-                <p>Raúl De Vena</p>
-                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
-                <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
-                    In</button>
-            </div>
-            <div class="grid items-center">
-
-                <div>
-                    <img src="img/IMAGE (6).png" alt="">
-                </div>
-                <p class="text-[#730000] text-[12px]">Personal trainer</p>
-                <p>Raúl De Vena</p>
-                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
-                <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
-                    In</button>
-            </div>
-            <div class="grid items-center">
-
-                <div>
-                    <img src="img/IMAGE (7).png" alt="">
-                </div>
-                <p class="text-[#730000] text-[12px]">Personal trainer</p>
-                <p>Raúl De Vena</p>
-                <p class="text-[12px]">Kettlebell and calisthenic trainer</p>
-                <button class="py-[11px] px-[48px] border-[#FF0000] border-[2px] rounded-[5px] text-[#553331]">Sign
-                    In</button>
-            </div> -->
         </div>
     </div>
 </section>
@@ -129,35 +86,6 @@
                   Create trainer account
               </button>
               </a>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="bg-red-train-me">
-    <div class="max-w-screen-2xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-        <div class="md:flex grid gap-5 justify-items-center md:justify-between md:items-center font-primary">
-            <div class="flex gap-2 items-center">
-                <div>
-                    <img src="../../../../assets/img/newsletter-logo.png" alt="">
-                </div>
-                <div class="hidden md:none">
-                    <img src="../../../../assets/img/stick.png" alt="">
-                </div>
-                <div class="text-[40px] text-white text-center">
-                    ¡Suscríbete al Newsletter!
-                </div>
-            </div>
-            <div class="hidden md:block">
-                <input type="email" placeholder="Your email" class="py-3 px-4 rounded-l-[35px]">
-                <button class="rounded-r-[35px] -m-2 py-3 px-12  text-white bg-[#424147]">
-                    Suscribirme
-                </button>
-            </div>
-            <div class="block md:hidden">
-                <input type="email" placeholder="Your email" class=" py-2 px-1 rounded-l-[35px]">
-                <button class="rounded-r-[35px] px-1  py-2 -m-2 text-white bg-[#424147]">
-                    Suscribirme
-                </button>
             </div>
         </div>
     </div>

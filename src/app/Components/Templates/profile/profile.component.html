@@ -27,7 +27,7 @@
       <div>
         <div *ngIf="user != null">
 
-          <img *ngIf="!loadingImg" src="{{srcImage}}" class="max-h-80 max-w-sm">
+          <img *ngIf="!loadingImg" src="{{srcImage}}" class="h-80 w-96 object-cover">
           <mat-progress-spinner color="primary" *ngIf="loadingImg" mode="indeterminate"></mat-progress-spinner>
 
         </div>
