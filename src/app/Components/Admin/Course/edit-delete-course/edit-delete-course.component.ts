@@ -95,7 +95,7 @@ export class EditDeleteCourseComponent {
     this.loading = true;
     let user = new User('', '', '', data.user, '', '', '', new Role('', '', ''));
     let category = new Category(data.category, '', '');
-    let course = new Course(data.id, data.name, data.description, data.price, '', '', user, category);
+    let course = new Course(data.id, data.name, data.description, data.price, '', '', user, category, '');
     this.courseService.update(course).subscribe(response => {
       if (response.code == '200') {
         this.alert = 'green';

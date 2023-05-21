@@ -5,7 +5,7 @@
 
     </div>
     <div class="flex justify-center">
-      <form [formGroup]="formCreateCourse" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full">
+      <form [formGroup]="formCreateCourse" class="space-y-4 h-fit border p-5 md:space-y-6 max-w-lg w-full" enctype="multipart/form-data">
 
         <div>
           <div class="grid grid-cols-1 gap-4">
@@ -41,7 +41,8 @@
               <input type="number" max="100" formControlName="price" name="price" id="price" required
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Price" required="">
-              <div class="text-red-400 text-sm font-thin" *ngIf="formCreateCourse.get('price').touched && (formCreateCourse.get('price').hasError('required') || formCreateCourse.get('price').hasError('max'))">
+              <div class="text-red-400 text-sm font-thin"
+                *ngIf="formCreateCourse.get('price').touched && (formCreateCourse.get('price').hasError('required') || formCreateCourse.get('price').hasError('max'))">
                 <div *ngIf="formCreateCourse.get('price').hasError('required')">
                   Price is required.
                 </div>
@@ -67,6 +68,19 @@
                   Category is required.
                 </div>
               </div>
+            </div>
+            <div>
+              <label for="">Upload course image</label>
+              <input type="file" (change)="catchImage($event)" multiple>
+            </div>
+            <div>
+              <label for="">Upload course file</label>
+              <input type="file" (change)="catchFile($event)" multiple>
+            </div>
+
+            <div>
+              <label for="">Upload course video</label>
+              <input type="file" (change)="catchVideo($event)" multiple>
             </div>
 
           </div>
